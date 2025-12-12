@@ -13,18 +13,22 @@ public class RouteGenerator : MonoBehaviour
     [SerializeField] float speed;
 
     int currentLocationMemory = 0;
-
+    
     const float TILE_SCALE = 45f;
 
-    const float DEAD_LENGTH = 120;
+    const float DEAD_LENGTH = 300;
+
+    int TILE_NUM = 0;
 
    List<Transform> tiles = new List<Transform>();
 
     private void Start()
     {
+        TILE_NUM = (int)(DEAD_LENGTH / TILE_SCALE);
+
         stageTiles = stageGenerator.GetStage();
 
-        for (int i = 0; i < DEAD_LENGTH / TILE_SCALE; i++)
+        for (int i = 0; i < TILE_NUM; i++)
         {
             Transform tile = Instantiate(stageTiles[i], transform).transform;
 
@@ -44,7 +48,8 @@ public class RouteGenerator : MonoBehaviour
     void TileWork()//タイルの管理
     {
         //ステージの大きさをはみ出していたらタイルは移動させない
-        if ((int)currentLocation > stageTiles.Length || (int)currentLocation < 0) return;
+        if ((int)currentLocation < 0) return;
+        if ((int)currentLocation + TILE_NUM >= stageTiles.Length) return;
 
         //操作タイルのリストをいじっている間はタイルの移動は行わない
         //無くすとタイル更新のタイミングで一瞬タイルが他のタイルと入れ替わる
@@ -90,7 +95,7 @@ public class RouteGenerator : MonoBehaviour
         if (prepend)//追加するタイルの番号を決める
         {
             //先頭の次を指定
-            tileNum = (int)currentLocation + (int)(DEAD_LENGTH / TILE_SCALE);
+            tileNum = (int)currentLocation + TILE_NUM;
         }
         else
         {
