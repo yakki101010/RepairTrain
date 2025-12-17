@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 157037954}
   - component: {fileID: 157037953}
   m_Layer: 0
-  m_Name: StageGenerator
+  m_Name: StageManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,8 +148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3a93534b9831541a766d6ed66be479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteManager
-  tiles: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+  tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
   length: 50
+  zombieNum: 10
+  eliteZombieNum: 0
 --- !u!4 &157037954
 Transform:
   m_ObjectHideFlags: 0
@@ -175,8 +177,9 @@ GameObject:
   m_Component:
   - component: {fileID: 196447197}
   - component: {fileID: 196447196}
+  - component: {fileID: 196447198}
   m_Layer: 0
-  m_Name: RouteGenerator
+  m_Name: StageEGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -194,10 +197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5353c8b566c6f4386e2e036f76680a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteGenerator
-  stageGenerator: {fileID: 157037953}
   stageTiles: []
-  currentLocation: 0
-  speed: 0
+  speed: 0.1
 --- !u!4 &196447197
 Transform:
   m_ObjectHideFlags: 0
@@ -213,6 +214,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &196447198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196447195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb9afc843538aa342af2262dc83ac835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieSpawner
+  prefab: {fileID: 2414011475133835599, guid: 63d2e6c6e4a2efe498ee8e5e5deb8840, type: 3}
+  spawnOffset: {x: 0, y: 0.5, z: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,7 +572,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 5327b7f7b57cd7e4f837cd23c1ab6981, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -726,12 +741,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 693886343}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 80}
-  m_LocalScale: {x: 250, y: 0.1, z: 30}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -2, z: 55}
+  m_LocalScale: {x: 250, y: 0.1, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1124488580}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &693886345
 MeshRenderer:
@@ -896,7 +911,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 5327b7f7b57cd7e4f837cd23c1ab6981, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -936,6 +951,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1124488580}
+  - component: {fileID: 1124488581}
   m_Layer: 0
   m_Name: Train
   m_TagString: Untagged
@@ -959,9 +975,20 @@ Transform:
   - {fileID: 1663218958}
   - {fileID: 1704452455}
   - {fileID: 466949397}
-  - {fileID: 693886344}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1124488581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124488579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b6dda8e355c9146a93609f9622eae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Train
 --- !u!1 &1663218957
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,7 +1070,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 5327b7f7b57cd7e4f837cd23c1ab6981, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1154,7 +1181,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 5327b7f7b57cd7e4f837cd23c1ab6981, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1194,5 +1221,6 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 1124488580}
   - {fileID: 496592800}
+  - {fileID: 693886344}
   - {fileID: 157037954}
   - {fileID: 196447197}
