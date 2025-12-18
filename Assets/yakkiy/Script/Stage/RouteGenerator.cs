@@ -68,6 +68,11 @@ public class RouteGenerator : MonoBehaviour
         currentLocation += Time.deltaTime * speed;
     }
 
+    public void SetSpeed(float delta)//移動スピードをセットする
+    {
+        speed = delta;
+    }
+
     void Singleton()
     {
         if (Instance == null)
