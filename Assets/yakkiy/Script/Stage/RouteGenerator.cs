@@ -160,7 +160,7 @@ public class RouteGenerator : MonoBehaviour
         tiles.Insert(insertIndex, tile);
 
 
-        TileSpawn(spawnPos);//アクションに登録された関数を呼ぶ
+        if(TileSpawn != null) TileSpawn(spawnPos);//アクションに登録された関数を呼ぶ
 
         currentLocationMemory = currentTile;
     }

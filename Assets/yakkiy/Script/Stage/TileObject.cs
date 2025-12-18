@@ -7,10 +7,10 @@
 public class TileObject : MonoBehaviour
 {
     //オブジェクト削除エリア最後尾の距離よりちょっと内
-    float deadZoneMax;
+    const float DEAD_ZONE_MAX = 90f;
 
     //オブジェクト削除エリア先頭の距離よりちょっと内
-    float deadZoneMin;
+    const float DEAD_ZONE_MIN = -90f;
 
     Rigidbody rb;
 
@@ -20,12 +20,6 @@ public class TileObject : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
-        //オブジェクト削除エリア最後尾を1タイルの半分を加えた値に設定
-        deadZoneMax = (RouteGenerator.Instance.transform.position.x + RouteGenerator.DEAD_LENGTH) + (RouteGenerator.TILE_SCALE * 0.5f);
-
-        //オブジェクト削除エリア先端をタイル生成位置タイルの全長から1タイルの半分を引いた値に設定
-        deadZoneMin = (RouteGenerator.Instance.transform.position.x) - (RouteGenerator.TILE_SCALE * 0.5f);
     }
 
     private void Update()
@@ -48,7 +42,7 @@ public class TileObject : MonoBehaviour
     {
         if (RouteGenerator.Instance.Speed == 0) return;
 
-        if(transform.position.x > deadZoneMax || transform.position.x < deadZoneMin)
+        if(transform.position.x > DEAD_ZONE_MAX || transform.position.x < DEAD_ZONE_MIN)
         {
             Destroy(gameObject);
         }

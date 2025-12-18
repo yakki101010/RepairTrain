@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieSpawner
   prefab: {fileID: 2414011475133835599, guid: 63d2e6c6e4a2efe498ee8e5e5deb8840, type: 3}
-  spawnOffset: {x: 0, y: 0, z: 0}
+  spawnOffset: {x: 60, y: 0, z: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,7 +792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5053334079766014711, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
       propertyPath: parameter.MaxSpeed
-      value: 0.8
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5053334079766014711, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
       propertyPath: parameter.Acceleration
