@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440e66757d689724aac5151485d0d2dc, type: 3}
+  m_Name: Parts_Cowcatcher
+  m_EditorClassIdentifier: Assembly-CSharp::PartProperty
+  name: "\u30AB\u30A6\u30AD\u30E3\u30C3\u30C1\u30E3\u30FC"
+  stagePrefab: {fileID: 0}
+  makingPrefab: {fileID: 9028951787441018402, guid: 11b6c49eb897157488f9588281dc8f68, type: 3}
