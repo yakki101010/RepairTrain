@@ -9,6 +9,7 @@ public class Train : MonoBehaviour
     public static Train Instance;
 
     [SerializeField] PartsData partsData;
+    public PartsData PartsData { get { return partsData; } }
 
     [SerializeField] TrainStructure initialTrain;
 
@@ -17,8 +18,6 @@ public class Train : MonoBehaviour
     private void Awake()
     {
         Singleton();
-
-        parameter.myTrain.bogie = initialTrain.bogie;//Debug用初期化
 
         //if (parameter.structure.trailingBogie.Count <= 0)//後続車が一つもなければ1台追加
         //{
@@ -29,9 +28,52 @@ public class Train : MonoBehaviour
         //}
     }
 
-    
+    private void Start()
+    {
+        TrainReadout_Stage();
+    }
 
-    
+    /// <summary>
+    /// 設計図を初期状態の列車に上書きする
+    /// </summary>
+    [ContextMenu("デフォルト列車")]
+    public void SetDefaulttrain()
+    {
+        parameter.myTrain.bogie = initialTrain.bogie;
+    }
+
+    /// <summary>
+    /// ステージ用列車の生成
+    /// </summary>
+    public void TrainReadout_Stage()
+    {
+        Readout_Stage(parameter.myTrain.bogie, transform);
+    }
+
+    /// <summary>
+    /// 階層を全て調べてステージプレハブを生成する
+    /// </summary>
+    /// <param name="childPart"></param>
+    /// <param name="parent"></param>
+    void Readout_Stage(List<PartObject> childPart, Transform parent)
+    {
+        for (int i = 0; i < childPart.Count; i++)
+        {
+            GameObject obj = Instantiate(childPart[i].partProperty.stagePrefab, childPart[i].pos, childPart[i].rot);
+
+            if (obj.TryGetComponent<MakingPart>(out MakingPart makingPart))
+            {
+                makingPart.beStructure = true;
+
+            }
+
+            //partsFamily.SetParent(parent);
+            obj.transform.SetParent(parent);
+
+            if (childPart[i].childPart.Count > 0) Readout_Stage(childPart[i].childPart, obj.transform);
+        }
+    }
+
 
     void Singleton()
     {

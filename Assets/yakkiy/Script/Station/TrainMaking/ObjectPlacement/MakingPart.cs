@@ -6,7 +6,8 @@ public class MakingPart : MonoBehaviour
 {
     const string ACTIVE_SCENE_NAME = "Station";
 
-    [SerializeField] PartProperty partProperty;
+    //[SerializeField] PartProperty partProperty;
+    //public PartProperty PartProperty { get { return partProperty; } }
 
     [SerializeField] GameObject colliderObj;
 

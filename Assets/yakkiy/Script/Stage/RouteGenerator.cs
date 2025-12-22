@@ -27,7 +27,7 @@ public class RouteGenerator : MonoBehaviour
 
     public GameObject[] stageTiles;
 
-    /*[SerializeField]*/ float currentLocation;
+    [SerializeField] float currentLocation;//現在位置
 
     public float CurrentLocation {  get { return currentLocation; } }
 
@@ -70,7 +70,22 @@ public class RouteGenerator : MonoBehaviour
 
     public void SetSpeed(float delta)//移動スピードをセットする
     {
+        if(delta < 0 && currentLocation < 0)
+        {
+            speed = 0;
+
+            return;
+        }
+
+        if (delta > 0 && currentLocation + TILE_NUM > stageTiles.Length)
+        {
+            speed = 0;
+
+            return;
+        }
+
         speed = delta;
+
     }
 
     void Singleton()

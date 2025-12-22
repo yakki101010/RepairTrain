@@ -161,8 +161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31b6b7527713f643a62b68bee9ee5a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MakingPart
-  partProperty: {fileID: 11400000, guid: 3fd2ad1872b0dea45a2930d7418ecf7d, type: 2}
   colliderObj: {fileID: 3255867099796933692}
+  partsFamily: {fileID: 0}
   meshRenderers:
   - {fileID: 3904574217645501929}
   isPickup: 0
@@ -179,3 +179,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b18fafc2ae789124bb4efbca8d8e8719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PartsFamily
+  partProperty: {fileID: 11400000, guid: 3fd2ad1872b0dea45a2930d7418ecf7d, type: 2}

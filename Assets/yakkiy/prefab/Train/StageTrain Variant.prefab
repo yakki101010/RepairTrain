@@ -49,6 +49,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5053334079766014711, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: partsData
+      value: 
+      objectReference: {fileID: 11400000, guid: a38c2c5c671c0764d8e3aca02192d6a5, type: 2}
+    - target: {fileID: 5053334079766014711, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: initialTrain
+      value: 
+      objectReference: {fileID: 11400000, guid: e0643d31b1f21c8419de41aa8d47b253, type: 2}
+    - target: {fileID: 5053334079766014711, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: parameter.myTrain
+      value: 
+      objectReference: {fileID: 11400000, guid: 168b37c42476181418e90e90f5fabb50, type: 2}
+    - target: {fileID: 5053334079766014711, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
       propertyPath: parameter.MaxSpeed
       value: 0.6
       objectReference: {fileID: 0}
@@ -61,7 +73,10 @@ PrefabInstance:
       value: StageTrain Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2342542492051171649, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+    - {fileID: 6316921468472142051, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+    - {fileID: 153680214609752167, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6163025438003566287, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}

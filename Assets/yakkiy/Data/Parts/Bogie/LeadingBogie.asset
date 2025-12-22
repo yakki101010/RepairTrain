@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: LeadingBogie
   m_EditorClassIdentifier: Assembly-CSharp::PartProperty
   name: "\u5148\u982D\u8ECA\u4E21"
-  stagePrefab: {fileID: 0}
+  stagePrefab: {fileID: 943594135095138172, guid: e0d0781ecaf8a804d82d99ab7d358ca9, type: 3}
   makingPrefab: {fileID: 7264242021825758797, guid: 1eedb71e02ad37742a55960a0c248ab4, type: 3}

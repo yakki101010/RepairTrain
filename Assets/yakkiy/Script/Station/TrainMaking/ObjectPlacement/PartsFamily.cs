@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class PartsFamily : MonoBehaviour
 {
-    [SerializeField] PartsFamily parent;
+
+    [SerializeField] PartProperty partProperty;
+    public PartProperty PartProperty { get { return partProperty; } }
+
+    PartsFamily parent;
     public PartsFamily Parent { get { return parent; } }
 
-    [SerializeField] List<PartsFamily> child = new List<PartsFamily> ();
+    List<PartsFamily> child = new List<PartsFamily> ();
     public List<PartsFamily> Child {  get { return child; } }
 
     /// <summary>

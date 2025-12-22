@@ -12,15 +12,15 @@ public class TrainStructure : ScriptableObject
 [System.Serializable]
 public class PartObject
 {
-    public PartObject parent;
-    [SerializeField] List<PartObject> childPart = new List<PartObject>();
-    public List<PartObject> ChildPart {  get { return childPart; } }
+    //public PartObject parent;
+    public List<PartObject> childPart = new List<PartObject>();
+    //public List<PartObject> ChildPart {  get { return childPart; } }
 
-    public void AddChild(PartObject child)
-    {
-        child.parent = this;
-        childPart.Add(child);
-    }
+    //public void AddChild(PartObject child)
+    //{
+    //    child.parent = this;
+    //    childPart.Add(child);
+    //}
 
     public PartProperty partProperty;
 

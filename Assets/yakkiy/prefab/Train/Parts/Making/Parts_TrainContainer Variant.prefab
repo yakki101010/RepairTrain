@@ -89,7 +89,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31b6b7527713f643a62b68bee9ee5a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MakingPart
-  partProperty: {fileID: 11400000, guid: af47d25b785096d4fbb287c8a2280f61, type: 2}
   colliderObj: {fileID: 8487391242745352632}
   partsFamily: {fileID: 8250856254910500072}
   meshRenderers:
@@ -108,8 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b18fafc2ae789124bb4efbca8d8e8719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PartsFamily
-  parent: {fileID: 0}
-  child: []
+  partProperty: {fileID: 11400000, guid: af47d25b785096d4fbb287c8a2280f61, type: 2}
 --- !u!23 &7983115420824940653 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 6755465745795741976, guid: da1053bdd3bd2484381733485feb3e76, type: 3}

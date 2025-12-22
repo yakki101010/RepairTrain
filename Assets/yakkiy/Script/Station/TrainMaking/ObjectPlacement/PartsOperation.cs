@@ -60,7 +60,11 @@ public class PartsOperation : MonoBehaviour
         PartsMove();
     }
 
-    void TrainReadout_Making()//データをもとに列車を出現させる
+    /// <summary>
+    /// データをもとに列車を出現させる
+    /// </summary>
+    [ContextMenu("設計図をロード")]
+    void TrainReadout_Making()
     {
         Readout_Making(Train.Instance.parameter.myTrain.bogie , partsRoot);//階層を全て調べてメイキングプレハブを生成する
     }
@@ -83,7 +87,7 @@ public class PartsOperation : MonoBehaviour
 
             partsFamily.SetParent(parent);
 
-            if (childPart[i].ChildPart.Count > 0) Readout_Making(childPart[i].ChildPart , partsFamily);
+            if (childPart[i].childPart.Count > 0) Readout_Making(childPart[i].childPart , partsFamily);
         }
     }
 
@@ -136,8 +140,12 @@ public class PartsOperation : MonoBehaviour
         partsFamily.RemoveChildren();
     }
 
-
-    MakingPart MakingPartSearch(Transform hitTransform)//ヒットしたオブジェクトのMakingPartコンポーネントを探す
+    /// <summary>
+    /// ヒットしたオブジェクトのMakingPartコンポーネントを探す
+    /// </summary>
+    /// <param name="hitTransform"></param>
+    /// <returns></returns>
+    MakingPart MakingPartSearch(Transform hitTransform)
     {
         MakingPart part = null;
 
@@ -253,6 +261,35 @@ public class PartsOperation : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// myTrainに反映させる
+    /// </summary>
+    [ContextMenu("設計図をセーブ")]
+   
+    void Completion()
+    {
+        List<PartObject> trainObject = new List<PartObject>();
+
+        Registration(partsRoot.Child,ref trainObject);
+
+        Train.Instance.parameter.myTrain.bogie = trainObject;
+
+        void Registration(List<PartsFamily> partFamily , ref List<PartObject> partObjects)
+        {
+            for (int i = 0; i < partFamily.Count; i++)
+            {
+                PartObject partObject = new PartObject();
+                partObject.partProperty = partFamily[i].PartProperty;
+                partObject.pos = partFamily[i].transform.position;
+                partObject.rot = partFamily[i].transform.rotation;
+
+                partObjects.Add(partObject);
+                
+                if (partFamily.Count > 0) Registration(partFamily[i].Child , ref partObject.childPart);
+            }
+        }
+        
+    }
 }
 
 

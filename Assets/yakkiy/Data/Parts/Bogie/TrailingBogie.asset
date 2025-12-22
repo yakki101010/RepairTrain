@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TrailingBogie
   m_EditorClassIdentifier: Assembly-CSharp::PartProperty
   name: "\u5F8C\u7D9A\u8ECA\u4E21"
-  stagePrefab: {fileID: 0}
+  stagePrefab: {fileID: 3671363578487365250, guid: cea9d0b83e6e4584ea21ba4122da99ca, type: 3}
   makingPrefab: {fileID: 4744598074218039071, guid: 3104f7101a943b748a1edb46f42977c8, type: 3}
