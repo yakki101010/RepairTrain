@@ -10,6 +10,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] RailTile tile;
 
     [SerializeField] int length;//ステージの全長
+    public int Length {  get { return length; } }
 
     [SerializeField] int zombieNum;//1タイル当たりのゾンビ数
     public int ZombieNum { get { return zombieNum; } }

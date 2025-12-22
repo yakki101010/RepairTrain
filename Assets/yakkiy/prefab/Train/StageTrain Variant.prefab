@@ -1,0 +1,147 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &9002203551324265042
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1182766408400869336, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182766408400869336, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182766408400869336, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182766408400869336, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182766408400869336, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182766408400869336, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182766408400869336, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182766408400869336, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182766408400869336, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182766408400869336, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5053334079766014711, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: partsData
+      value: 
+      objectReference: {fileID: 11400000, guid: a38c2c5c671c0764d8e3aca02192d6a5, type: 2}
+    - target: {fileID: 5053334079766014711, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: initialTrain
+      value: 
+      objectReference: {fileID: 11400000, guid: e0643d31b1f21c8419de41aa8d47b253, type: 2}
+    - target: {fileID: 5053334079766014711, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: parameter.myTrain
+      value: 
+      objectReference: {fileID: 11400000, guid: 168b37c42476181418e90e90f5fabb50, type: 2}
+    - target: {fileID: 5053334079766014711, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: parameter.MaxSpeed
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5053334079766014711, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: parameter.Acceleration
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163025438003566287, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      propertyPath: m_Name
+      value: StageTrain Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 2342542492051171649, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+    - {fileID: 6316921468472142051, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+    - {fileID: 153680214609752167, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6163025438003566287, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5361034475908873044}
+    - targetCorrespondingSourceObject: {fileID: 6163025438003566287, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5064780388557150315}
+  m_SourcePrefab: {fileID: 100100000, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+--- !u!1 &2983976240573533341 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6163025438003566287, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+  m_PrefabInstance: {fileID: 9002203551324265042}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5361034475908873044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2983976240573533341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d26bd0f1b1f43e49925ec349ae4ca9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrainController
+  train: {fileID: 4237690425158496421}
+--- !u!114 &5064780388557150315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2983976240573533341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &4237690425158496421 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5053334079766014711, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+  m_PrefabInstance: {fileID: 9002203551324265042}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2983976240573533341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b6dda8e355c9146a93609f9622eae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Train

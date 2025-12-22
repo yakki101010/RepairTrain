@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440e66757d689724aac5151485d0d2dc, type: 3}
+  m_Name: TrailingBogie
+  m_EditorClassIdentifier: Assembly-CSharp::PartProperty
+  name: "\u5F8C\u7D9A\u8ECA\u4E21"
+  stagePrefab: {fileID: 3671363578487365250, guid: cea9d0b83e6e4584ea21ba4122da99ca, type: 3}
+  makingPrefab: {fileID: 4744598074218039071, guid: 3104f7101a943b748a1edb46f42977c8, type: 3}

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440e66757d689724aac5151485d0d2dc, type: 3}
+  m_Name: LeadingBogie
+  m_EditorClassIdentifier: Assembly-CSharp::PartProperty
+  name: "\u5148\u982D\u8ECA\u4E21"
+  stagePrefab: {fileID: 943594135095138172, guid: e0d0781ecaf8a804d82d99ab7d358ca9, type: 3}
+  makingPrefab: {fileID: 7264242021825758797, guid: 1eedb71e02ad37742a55960a0c248ab4, type: 3}

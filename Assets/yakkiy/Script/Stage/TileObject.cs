@@ -29,8 +29,12 @@ public class TileObject : MonoBehaviour
         FollowTheGround();
     }
 
+    /// <summary>
+    /// タイルに合わせて移動
+    /// </summary>
     void FollowTheGround()
     {
+
         Vector3 pos = rb.position;
 
         pos.x += RouteGenerator.Instance.Speed * (RouteGenerator.TILE_SCALE )* Time.deltaTime;
@@ -38,6 +42,9 @@ public class TileObject : MonoBehaviour
         rb.MovePosition(pos);
     }
 
+    /// <summary>
+    /// 範囲外にでたら削除
+    /// </summary>
     void DespawnCheck()
     {
         if (RouteGenerator.Instance.Speed == 0) return;
