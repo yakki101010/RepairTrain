@@ -17,3 +17,4 @@ MonoBehaviour:
   partProperties:
   - {fileID: 11400000, guid: 3fd2ad1872b0dea45a2930d7418ecf7d, type: 2}
   - {fileID: 11400000, guid: af47d25b785096d4fbb287c8a2280f61, type: 2}
+  - {fileID: 11400000, guid: 1304a43c02881414bb05800e8b84dc5b, type: 2}

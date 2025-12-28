@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Tiles
   m_EditorClassIdentifier: Assembly-CSharp::Tiles
   plainSeries:
+    startRail: {fileID: 1746949007818693482, guid: 8a6c9268ec792ab4891f7d5906e1e2a4, type: 3}
+    goalRail: {fileID: 9202293551335276774, guid: 01be88fcd4fa0184a862bbf05b921ebe, type: 3}
     straightRails:
     - {fileID: 2412017473289128821, guid: 1f249c1f62b2c4f4bad6e2fca637b09c, type: 3}
     - {fileID: 3407773142824138662, guid: 62bfac31ded996f48905f9635ae84670, type: 3}

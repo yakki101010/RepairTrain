@@ -84,6 +84,9 @@ PrefabInstance:
       addedObject: {fileID: 5361034475908873044}
     - targetCorrespondingSourceObject: {fileID: 6163025438003566287, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 2230173621952498592}
+    - targetCorrespondingSourceObject: {fileID: 6163025438003566287, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 5064780388557150315}
   m_SourcePrefab: {fileID: 100100000, guid: 31948e5a7f1ae1d4e9004b32654de041, type: 3}
 --- !u!1 &2983976240573533341 stripped
@@ -104,6 +107,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrainController
   train: {fileID: 4237690425158496421}
+--- !u!114 &2230173621952498592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2983976240573533341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3b2df59642bf441a842711b3819e29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputManager
 --- !u!114 &5064780388557150315
 MonoBehaviour:
   m_ObjectHideFlags: 0

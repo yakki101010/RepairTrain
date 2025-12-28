@@ -9,12 +9,12 @@ public class MakingPart : MonoBehaviour
     //[SerializeField] PartProperty partProperty;
     //public PartProperty PartProperty { get { return partProperty; } }
 
-    [SerializeField] GameObject colliderObj;
+    [SerializeField] GameObject[] colliderObjs;
 
     [SerializeField] PartsFamily partsFamily;//メイキング用親子関係もどき
     public PartsFamily PartsFamily { get { return partsFamily; } }
 
-    public GameObject ColliderObj{  get { return colliderObj; } }
+    public GameObject[] ColliderObjs{  get { return colliderObjs; } }
 
     [SerializeField] MeshRenderer[] meshRenderers;
     public MeshRenderer[] MeshRenderers {  get { return meshRenderers; } }
@@ -64,15 +64,25 @@ public class MakingPart : MonoBehaviour
         {
             meshRenderers[i].material = materials[i];
         }
+
+        /*未登録のパーツリストから除外*/
+        PartsOperation.Instance.unregisteredParts.Remove(this);
     }
 
     void CorrectPlacement()//配置が正しいかのチェック
     {
-        if (isPickup) return;//ピックアップ中は考えない
-
         if (beStructure) return;//列車に組み込まれていたら正しい
 
         //if(isBuried) return;//めり込んでいたら正しくない
+
+        /*未登録のパーツとして登録*/
+        if(!PartsOperation.Instance.unregisteredParts.Contains(this))
+        {
+            PartsOperation.Instance.unregisteredParts.Add(this);
+        }
+        
+
+        if (isPickup) return;//ピックアップ中は色を上書きしない
 
         MaterialFill(PartsOperation.Instance.CannotBePlacedMaterial);
     }

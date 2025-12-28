@@ -22,7 +22,11 @@ MonoBehaviour:
     pos: {x: -3, y: 0, z: 0}
     rot: {x: 0, y: 0, z: 0, w: 0}
   - childPart:
-    - childPart: []
+    - childPart:
+      - childPart: []
+        partProperty: {fileID: 11400000, guid: 1304a43c02881414bb05800e8b84dc5b, type: 2}
+        pos: {x: 3.7, y: 4.460001, z: 0}
+        rot: {x: 0.70710677, y: 0, z: 0, w: -0.70710677}
       partProperty: {fileID: 11400000, guid: af47d25b785096d4fbb287c8a2280f61, type: 2}
       pos: {x: 3.8, y: 1.82, z: 0}
       rot: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}

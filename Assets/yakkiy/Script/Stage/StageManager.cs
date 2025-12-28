@@ -28,6 +28,8 @@ public class StageManager : MonoBehaviour
     private void Start()
     {
         GetStage();
+
+        Train.Instance.TrainReadout_Stage();//列車生成
     }
 
     void Singleton()
@@ -63,7 +65,7 @@ public class Stage
     /// </summary>
     /// <param name="length">タイルの長さ</param>
     /// <param name="rail">使用するタイルシリーズ</param>
-    public void RandomTile(int length , Rail rail)
+    public void RandomTile(int length, Rail rail)
     {
         tiles = new GameObject[length];
 
@@ -71,6 +73,18 @@ public class Stage
         {
             tiles[i] = rail.GetTile();
         }
+
+        OverwriteStartAndGoal();
+
+
+        void OverwriteStartAndGoal()
+        {
+            int margin = (RouteGenerator.TILE_NUM / 2);
+
+            tiles[margin] = rail.startRail;
+            tiles[length - margin] = rail.goalRail;
+        }
     }
+
 }
 

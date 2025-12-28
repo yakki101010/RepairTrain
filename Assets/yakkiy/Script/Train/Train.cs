@@ -11,8 +11,6 @@ public class Train : MonoBehaviour
     [SerializeField] PartsData partsData;
     public PartsData PartsData { get { return partsData; } }
 
-    [SerializeField] TrainStructure initialTrain;
-
     public TrainParameter parameter;
 
     private void Awake()
@@ -30,17 +28,10 @@ public class Train : MonoBehaviour
 
     private void Start()
     {
-        TrainReadout_Stage();
+        
     }
 
-    /// <summary>
-    /// 設計図を初期状態の列車に上書きする
-    /// </summary>
-    [ContextMenu("デフォルト列車")]
-    public void SetDefaulttrain()
-    {
-        parameter.myTrain.bogie = initialTrain.bogie;
-    }
+   
 
     /// <summary>
     /// ステージ用列車の生成
@@ -102,10 +93,10 @@ public class TrainParameter
     /// 加速力
     /// </summary>
     public float Acceleration;
-    ///// <summary>
-    ///// 重量
-    ///// </summary>
-    //public float Weight;
+    /// <summary>
+    /// まとわりついたゾンビを引っ張れる数
+    /// </summary>
+    public int PullingForce;
 
     /// <summary>
     /// 列車の構造

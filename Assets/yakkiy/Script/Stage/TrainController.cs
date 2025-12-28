@@ -5,31 +5,22 @@ public class TrainController : MonoBehaviour
 {
     [SerializeField] Train train;
 
-    bool forwardAccele;
-    bool backAccele;
-
     float speed = 0;
 
-    public void OnForwardDown()
-    {
-        //Debug.Log("前進入力");
-        forwardAccele = true;
-    }
+    InputManager inputManager;
 
-    public void OnForwardUp()
-    {
-        //Debug.Log("前進入力やめ");
-        forwardAccele = false;
-    }
+    int clungNum;//まとわりついたゾンビの数
 
-    public void OnBackDown()
-    {
-        backAccele = true;
-    }
+    int maxClungNum;//引っ張れる上限
+    int speedD​downClungNum;//引っ張っていると減速がかかる数
 
-    public void OnBackUp()
+    private void Start()
     {
-        backAccele = false;
+        inputManager = InputManager.Instance;
+
+        maxClungNum = Train.Instance.parameter.PullingForce;//ココ以外でも使うなら一度変数にいれる
+
+        speedDdownClungNum = (int)(maxClungNum * 0.5f);
     }
 
     private void Update()
@@ -44,29 +35,41 @@ public class TrainController : MonoBehaviour
         const float DECELERATION = 0.1f;
         const float STOP_ERROR = 0.05f;
 
-        if(forwardAccele && backAccele)//ブレーキ
+
+        if(clungNum > maxClungNum)//大量のゾンビにまとわりつかれていたら強制ニュートラル
+        {
+            Neutral();
+            return;
+        }
+
+        if(inputManager.ForwardAccele && inputManager.BackAccele)//ブレーキ
         {
             Brake();
         }
-        else if((forwardAccele && speed < 0) || (backAccele && speed > 0))//ブレーキ
+        else if((inputManager.ForwardAccele && speed < 0) || (inputManager.BackAccele && speed > 0))//ブレーキ
         {
             Brake();
         }
-        else if (forwardAccele)//行進
+        else if (inputManager.ForwardAccele)//行進
         {
             if (speed < train.parameter.MaxSpeed)
             {
-                speed += (train.parameter.Acceleration * Time.deltaTime);
+                Accelerator(train.parameter.Acceleration * Time.deltaTime);
             }
         }
-        else if (backAccele)//後退
+        else if (inputManager.BackAccele)//後退
         {
             if (speed > -train.parameter.MaxSpeed)
             {
-                speed -= (train.parameter.Acceleration * Time.deltaTime);
+                Accelerator(-train.parameter.Acceleration * Time.deltaTime);
             }
         }
         else//操作なし
+        {
+            Neutral();
+        }
+
+        void Neutral()//入力無し徐々に減速する
         {
             if (speed > STOP_ERROR || speed < -STOP_ERROR)
             {
@@ -77,15 +80,57 @@ public class TrainController : MonoBehaviour
                 speed = 0;
             }
         }
+
+        void Brake()//急激に減速する
+        {
+            const float BRAKE_POWER = 0.5f;
+
+            if (speed != 0)
+            {
+                speed += speed > 0 ? -(BRAKE_POWER * Time.deltaTime) : (BRAKE_POWER * Time.deltaTime);
+            }
+        }
+
+        void Accelerator(float value)
+        {
+            const float DOWN_SPEED = 0.2f;//減速する場合の強さ
+
+            if (clungNum > speedDdownClungNum) value *= DOWN_SPEED;
+
+            speed += value;
+        }
+    }
+    
+
+    /// <summary>
+    /// 列車に張り付く(張り付きCountを1増やす)
+    /// </summary>
+    public void Stick()
+    {
+        clungNum++;
     }
 
-    void Brake()
+    /// <summary>
+    /// 列車に張り付く(張り付きCountをN増やす)
+    /// </summary>
+    public void Stick(int n)
     {
-        const float BRAKE_POWER = 0.5f;
+        clungNum += n;
+    }
 
-        if (speed != 0)
-        {
-            speed += speed > 0 ? -(BRAKE_POWER * Time.deltaTime) : (BRAKE_POWER * Time.deltaTime);
-        }
+    /// <summary>
+    /// 列車から離れる(張り付きCountを1減らす)
+    /// </summary>
+    public void Leave()
+    {
+        clungNum--;
+    }
+
+    /// <summary>
+    /// 列車から離れる(張り付きCountをN減らす)
+    /// </summary>
+    public void Leave(int n)
+    {
+        clungNum -= n;
     }
 }

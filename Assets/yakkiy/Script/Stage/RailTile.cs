@@ -14,6 +14,9 @@ public class RailTile : ScriptableObject
 [System.Serializable]
 public class Rail
 {
+    public GameObject startRail;
+    public GameObject goalRail;
+
     public GameObject[] straightRails;//直進レール系
 
     public GameObject GetTile()

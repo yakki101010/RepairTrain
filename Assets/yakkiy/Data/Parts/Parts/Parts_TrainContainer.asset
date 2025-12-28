@@ -15,3 +15,4 @@ MonoBehaviour:
   name: "\u30B3\u30F3\u30C6\u30CA"
   stagePrefab: {fileID: 4465652627478166837, guid: ea9aa4f32bbd5d0439a6c4ac01a506ba, type: 3}
   makingPrefab: {fileID: 4099215959604790235, guid: a4cfc29b53728ed43a13df23e5fc56a6, type: 3}
+  CraftUIPrefab: {fileID: 2817304812304166217, guid: b4f9c32fb1b04254f98882b77d31f316, type: 3}
