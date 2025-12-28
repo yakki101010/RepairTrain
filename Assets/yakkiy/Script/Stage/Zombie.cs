@@ -2,10 +2,10 @@
 
 public class Zombie : MonoBehaviour
 {
-    //オブジェクト削除エリア最後尾の距離よりちょっと内
+    //オブジェクト削除エリア最後尾
     const float DEAD_ZONE_MAX = 90f;
 
-    //オブジェクト削除エリア先頭の距離よりちょっと内
+    //オブジェクト削除エリア先頭
     const float DEAD_ZONE_MIN = -90f;
 
     [SerializeField] LayerMask trainLayer;
@@ -23,6 +23,8 @@ public class Zombie : MonoBehaviour
     TrainController trainController;
     ZombieObjectPool zombieObjectPool;
 
+    RouteGenerator routeGenerator;
+
     ///bool isMove = true;
     bool isStick;
 
@@ -31,6 +33,8 @@ public class Zombie : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        routeGenerator = RouteGenerator.Instance;
     }
 
     private void OnEnable()
@@ -135,7 +139,7 @@ public class Zombie : MonoBehaviour
 
         Vector3 pos = rb.position;
 
-        pos.x += RouteGenerator.Instance.Speed * (RouteGenerator.TILE_SCALE) * Time.deltaTime;
+        pos.x += routeGenerator.Speed * (RouteGenerator.TILE_SCALE) * Time.deltaTime;
 
         rb.MovePosition(pos);
     }
@@ -145,7 +149,7 @@ public class Zombie : MonoBehaviour
     /// </summary>
     void DespawnCheck()
     {
-        if (RouteGenerator.Instance.Speed == 0) return;
+        if (routeGenerator.Speed == 0) return;
 
         if (transform.position.x > DEAD_ZONE_MAX || transform.position.x < DEAD_ZONE_MIN)
         {

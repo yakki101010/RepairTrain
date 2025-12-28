@@ -7,7 +7,7 @@ public class ZombieObjectPool : MonoBehaviour
 
     TrainController trainController;
 
-    private void Start()
+    private void Awake()
     {
         trainController = Train.Instance.gameObject.GetComponent<TrainController>();
     }

@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteManager
   tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
-  length: 15
-  zombieNum: 200
+  length: 30
+  zombieNum: 100
   eliteZombieNum: 0
 --- !u!4 &157037954
 Transform:
@@ -229,7 +229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ZombieSpawner
   prefab: {fileID: 2414011475133835599, guid: 63d2e6c6e4a2efe498ee8e5e5deb8840, type: 3}
   zombieObjectPool: {fileID: 1550901400}
-  spawnOffset: {x: 60, y: 0, z: 0}
+  sideSpawnOffset: {x: 50, y: 0, z: 0}
+  frontAndBackSpawnOffset: {x: 0, y: 0, z: 20}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,8 +1142,12 @@ PrefabInstance:
       value: StageTrain
       objectReference: {fileID: 0}
     - target: {fileID: 4237690425158496421, guid: be8745f107e2207469b6f8dfcd1aaac8, type: 3}
+      propertyPath: parameter.MaxSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237690425158496421, guid: be8745f107e2207469b6f8dfcd1aaac8, type: 3}
       propertyPath: parameter.PullingForce
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7819453635616492938, guid: be8745f107e2207469b6f8dfcd1aaac8, type: 3}
       propertyPath: m_LocalPosition.x

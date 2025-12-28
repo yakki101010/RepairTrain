@@ -36,9 +36,10 @@ public class TrainController : MonoBehaviour
         const float STOP_ERROR = 0.05f;
 
 
-        if(clungNum > maxClungNum)//大量のゾンビにまとわりつかれていたら強制ニュートラル
+        if(clungNum > maxClungNum)//大量のゾンビにまとわりつかれていたら強制ブレーキ
         {
-            Neutral();
+            Brake();
+            //Neutral();
             return;
         }
 
@@ -93,7 +94,7 @@ public class TrainController : MonoBehaviour
 
         void Accelerator(float value)
         {
-            const float DOWN_SPEED = 0.2f;//減速する場合の強さ
+            const float DOWN_SPEED = 0.1f;//減速する場合の強さ
 
             if (clungNum > speedDdownClungNum) value *= DOWN_SPEED;
 

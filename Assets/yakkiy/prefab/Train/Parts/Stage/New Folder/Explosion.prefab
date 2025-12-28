@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4828614710500454097}
   - component: {fileID: 4069408221664927068}
   - component: {fileID: 1586583891139363928}
-  - component: {fileID: 4946911081681543709}
   - component: {fileID: 3219679909518417160}
+  - component: {fileID: 4375153607358422042}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackArea
   knockBack: 100
-  damage: 60
+  damage: 20
 --- !u!198 &4828614710500454097
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4933,21 +4933,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4946911081681543709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6660025895636005468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08ce7c90a9f8d4842842140f638aa853, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TileObject
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!54 &3219679909518417160
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4975,3 +4960,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4375153607358422042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6660025895636005468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5077bf069745394d9eea8ad0240eb23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileObject

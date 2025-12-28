@@ -68,6 +68,12 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7767591363221938000, guid: c5ec6a508fd86e946804a5a0e7306a76, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 189560167409028992}
+    - targetCorrespondingSourceObject: {fileID: 7767591363221938000, guid: c5ec6a508fd86e946804a5a0e7306a76, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6009348943371656140}
     - targetCorrespondingSourceObject: {fileID: 4300490146982626638, guid: c5ec6a508fd86e946804a5a0e7306a76, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3387357475002456067}
@@ -99,3 +105,43 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8023080413318814639, guid: 0c22afb2ff4d9ea4aac3f8f3870f7c74, type: 3}
+--- !u!1 &6275182093293266301 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7767591363221938000, guid: c5ec6a508fd86e946804a5a0e7306a76, type: 3}
+  m_PrefabInstance: {fileID: 4384795117217610285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &189560167409028992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6275182093293266301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052efa195a3eaf54fbc6add5f0f102da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cowcatcher
+  basicDamage: 20
+  speedDamageMultiplier: 20
+--- !u!135 &6009348943371656140
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6275182093293266301}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.5
+  m_Center: {x: 0, y: -0.5, z: 0.5}
