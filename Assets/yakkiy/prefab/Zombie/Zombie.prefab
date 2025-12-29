@@ -57,6 +57,8 @@ MonoBehaviour:
   speed: 0.3
   obtainScrap: 27
   attackSE: {fileID: 8300000, guid: 0006a99efa78ce74a99aa03c20f594b7, type: 3}
+  deadSE: {fileID: 8300000, guid: 3f2886fb33fa93a44a4cb1f91e24451a, type: 3}
+  bloodSplatter: {fileID: 4650017661094939590, guid: 569d2f5ae91dcdf4cb5ad2329e85ab1c, type: 3}
   animator: {fileID: 6433222577745610291}
 --- !u!54 &557115022185231665
 Rigidbody:

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440e66757d689724aac5151485d0d2dc, type: 3}
+  m_Name: Parts_Harvester
+  m_EditorClassIdentifier: Assembly-CSharp::PartProperty
+  stagePrefab: {fileID: 863130200521918465, guid: 9c815d1d722172e4c99f58e6d6bd9c6e, type: 3}
+  makingPrefab: {fileID: 1631842379137589115, guid: 015eb0ec8bfd6cf48863381e837c28b5, type: 3}
+  craftUI:
+    name: "\u30CF\u30FC\u30D9\u30B9\u30BF\u30FC"
+    image: {fileID: 21300000, guid: 045a3cd9f5b84b948bbafb69d95211a2, type: 3}
+    explanation: "\u632F\u308C\u305F\u30BE\u30F3\u30D3\u306B\u6301\u7D9A\u7684\u306B\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002\n\u5A01\u529B\u306F\u4F4E\u3044\u304C\u3001\u62D8\u675F\u3055\u308C\u305F\u3068\u304D\u306B\u5F79\u7ACB\u3064\u304B\u3082\u3002"
+    price: 27000

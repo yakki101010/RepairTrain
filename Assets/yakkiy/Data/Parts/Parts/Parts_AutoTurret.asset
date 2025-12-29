@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 440e66757d689724aac5151485d0d2dc, type: 3}
   m_Name: Parts_AutoTurret
   m_EditorClassIdentifier: Assembly-CSharp::PartProperty
-  name: "\u30AA\u30FC\u30C8\u30BF\u30EC\u30C3\u30C8"
   stagePrefab: {fileID: 8737096086785901628, guid: 210a46a1d7f63be4d884afc561cc1814, type: 3}
   makingPrefab: {fileID: 797902249895314407, guid: 7bdc16bbb7d08bb41966ab59d1370d50, type: 3}
-  CraftUIPrefab: {fileID: 0}
+  craftUI:
+    name: "\u30A2\u30B5\u30EB\u30C8\u30BF\u30EC\u30C3\u30C8"
+    image: {fileID: 21300000, guid: 12b9aaab8178bcb429719ddcf059e7a3, type: 3}
+    explanation: "\u5468\u56F2\u306E\u30BE\u30F3\u30D3\u3092\u81EA\u52D5\u3067\u653B\u6483\u3059\u308B\u3002\n\u30AB\u30D0\u30FC\u3067\u304D\u308B\u8DDD\u96E2\u304C\u5E83\u3044\u3002"
+    price: 60000

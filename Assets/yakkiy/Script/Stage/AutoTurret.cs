@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AutoTurret : MonoBehaviour
 {
-    const float RANDOM_PITCH_MIN = 1f;
-    const float RANDOM_PITCH_MAX = 1.5f;
 
     [Header("攻撃力")]
     [SerializeField] int damage;
@@ -29,6 +27,9 @@ public class AutoTurret : MonoBehaviour
     [SerializeField] Transform shotPoint;
     [Header("射線を阻害するレイヤー")]
     [SerializeField] LayerMask notPenetrationLayer;
+
+    [Header("ブレ")]
+    [SerializeField] float bulletShake = 0.3f;
 
     [Header("銃身")]
     [SerializeField] Transform gunBarrel;
@@ -135,15 +136,15 @@ public class AutoTurret : MonoBehaviour
     {
         isCoolTime = true;
 
-        Vector3 targetPos = target.transform.position;
 
         for (int i = 0; i < rapidFire; i++)
         {
-            Transform blood = Instantiate(bloodPrefab, bloodCreatePoint.position, Quaternion.identity).transform;
-            StartCoroutine(ShotCourse(blood, targetPos));
+            if (target == null) break;
 
-            audioSource.pitch = Random.Range(RANDOM_PITCH_MIN , RANDOM_PITCH_MAX);
-            audioSource.PlayOneShot(shotSE);
+            Transform blood = Instantiate(bloodPrefab, bloodCreatePoint.position, Quaternion.identity).transform;
+            StartCoroutine(ShotCourse(blood, target.transform.position));
+
+            ContinuousAudio.PlaySoundPitchRandom(audioSource, shotSE);
 
             yield return new WaitForSeconds(fireRate);
         }
@@ -163,13 +164,11 @@ public class AutoTurret : MonoBehaviour
 
         const float TARGET_OFFSET_Y = 1f;
 
-        const float BULLET_SHAKE = 0.3f;
-
         targetPos.y += TARGET_OFFSET_Y;
 
-        targetPos.x += Random.Range(-BULLET_SHAKE , BULLET_SHAKE);
-        targetPos.y += Random.Range(-BULLET_SHAKE , BULLET_SHAKE);
-        targetPos.z += Random.Range(-BULLET_SHAKE , BULLET_SHAKE);
+        targetPos.x += Random.Range(-bulletShake , bulletShake);
+        targetPos.y += Random.Range(-bulletShake , bulletShake);
+        targetPos.z += Random.Range(-bulletShake , bulletShake);
 
         for (float t = 0; t < 1; t += SPEED * Time.deltaTime)
         {

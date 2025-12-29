@@ -2,8 +2,6 @@
 
 public class Cowcatcher : MonoBehaviour
 {
-    const float RANDOM_PITCH_MIN = 1f;
-    const float RANDOM_PITCH_MAX = 1.5f;
 
     [Header("基本ダメージ")]
     [SerializeField] int basicDamage = 10;
@@ -36,8 +34,7 @@ public class Cowcatcher : MonoBehaviour
         {
             if (damage > 100)
             {
-                audioSource.pitch = Random.Range(RANDOM_PITCH_MIN, RANDOM_PITCH_MAX);
-                audioSource.PlayOneShot(criticalHitSE); 
+                ContinuousAudio.PlaySoundPitchRandom(audioSource, criticalHitSE);
             }
 
             other.gameObject.GetComponent<Zombie>().AddHP(-damage);

@@ -2,18 +2,19 @@
 
 public class TileObject : MonoBehaviour
 {
-    Rigidbody rb;
+    
+
     RouteGenerator routeGenerator;
 
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
         routeGenerator = RouteGenerator.Instance;
     }
 
     private void Update()
     {
+
         FollowTheGround();
     }
 
@@ -25,10 +26,12 @@ public class TileObject : MonoBehaviour
 
         //if (!isMove) return;
 
-        Vector3 pos = rb.position;
+        Vector3 pos = transform.position;
 
-        pos.x += routeGenerator.Speed * (RouteGenerator.TILE_SCALE * 2) * Time.deltaTime;
+        pos.x += routeGenerator.Speed * (RouteGenerator.TILE_SCALE) * Time.deltaTime;
 
-        rb.MovePosition(pos);
+        transform.position = pos;
     }
+
+    
 }

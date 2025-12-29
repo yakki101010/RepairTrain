@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class Mortar : MonoBehaviour
 {
-    const float RANDOM_PITCH_MIN = 1f;
-    const float RANDOM_PITCH_MAX = 1.5f;
-
     [Header("クールタイム")]
     [SerializeField] float coolTime;
 
@@ -79,7 +76,7 @@ public class Mortar : MonoBehaviour
             targetPos = hit.point;
 
             targetMarkObj.transform.position = targetPos;
-
+            targetMarkObj.transform.rotation = Quaternion.identity;
         }
     }
 
@@ -111,8 +108,7 @@ public class Mortar : MonoBehaviour
 
         Instantiate(explosionPrefab, bloodTransform.position, Quaternion.identity);
 
-        audioSource.pitch = Random.Range(RANDOM_PITCH_MIN, RANDOM_PITCH_MAX);
-        audioSource.PlayOneShot(explosionSE);
+        ContinuousAudio.PlaySoundPitchRandom(audioSource, shotSE);
     }
 
     /// <summary>

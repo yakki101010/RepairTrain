@@ -15,6 +15,10 @@ MonoBehaviour:
   leadingBogie: {fileID: 11400000, guid: ab2fe310716e9934ba92289aae3a4e6f, type: 2}
   trailingBogie: {fileID: 11400000, guid: 0550d0d2aa0f1f444a1b3a30c985c6eb, type: 2}
   partProperties:
+  - {fileID: 11400000, guid: 69ee0ac8d507aeb4fac97a78dd42514b, type: 2}
+  - {fileID: 11400000, guid: 6eeb522fd4301f845a680c4fc5a4542b, type: 2}
   - {fileID: 11400000, guid: 3fd2ad1872b0dea45a2930d7418ecf7d, type: 2}
-  - {fileID: 11400000, guid: af47d25b785096d4fbb287c8a2280f61, type: 2}
+  - {fileID: 11400000, guid: 05b027529d7789843bb6a4ed5fce77ae, type: 2}
   - {fileID: 11400000, guid: 1304a43c02881414bb05800e8b84dc5b, type: 2}
+  - {fileID: 11400000, guid: 07b3f696fc60d4241865e737693061ef, type: 2}
+  - {fileID: 11400000, guid: af47d25b785096d4fbb287c8a2280f61, type: 2}

@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
-    const float RANDOM_PITCH_MIN = 1f;
-    const float RANDOM_PITCH_MAX = 1.5f;
+    
 
     //オブジェクト削除エリア最後尾
     const float DEAD_ZONE_MAX = 90f;
@@ -28,6 +27,12 @@ public class Zombie : MonoBehaviour
 
     [Header("攻撃SE")]
     [SerializeField] AudioClip attackSE;
+    [Header("デスSE")]
+    [SerializeField] AudioClip deadSE;
+
+    [Header("血しぶきプレハブ")]
+    [SerializeField] GameObject bloodSplatter;
+    
 
     TrainController trainController;
     ZombieObjectPool zombieObjectPool;
@@ -112,7 +117,11 @@ public class Zombie : MonoBehaviour
 
     void Dead()
     {
-        
+        BloodstainObjectPool.Instance.BloodstainInstantiate(transform.position, Quaternion.Euler(0, Random.Range(0, 360), 0));
+        Instantiate(bloodSplatter , transform.position , Quaternion.identity);
+
+        ContinuousAudio.PlaySoundPitchRandom(audioSource, deadSE);
+
         gameManager.scrap.AddAmountOwned(obtainScrap);//スクラップを渡す
 
         Leave();
@@ -154,7 +163,6 @@ public class Zombie : MonoBehaviour
     /// </summary>
     void FollowTheGround()
     {
-
         //if (!isMove) return;
 
         Vector3 pos = rb.position;
@@ -197,8 +205,7 @@ public class Zombie : MonoBehaviour
 
         if (isStick)
         {
-            audioSource.pitch = Random.Range(RANDOM_PITCH_MIN, RANDOM_PITCH_MAX);
-            audioSource.PlayOneShot(attackSE);
+            ContinuousAudio.PlaySoundPitchRandom(audioSource , attackSE);
         }
         isAttackInterval = false;
     }
