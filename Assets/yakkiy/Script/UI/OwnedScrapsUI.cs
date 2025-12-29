@@ -5,16 +5,28 @@ public class OwnedScrapsUI : MonoBehaviour
 {
     [SerializeField] TMP_Text display;
 
+    GameManager gameManager;
+
     void Start()
     {
         Initialization();
     }
+
+    private void OnDestroy()
+    {
+        if (gameManager == null) return;
+
+        gameManager.scrap.RemoveCallback(DisplayUpdate);
+    }
+
     /// <summary>
     /// 初期化
     /// </summary>
     void Initialization()
     {
-        GameManager.Instance.scrap.ReceiveCallback(DisplayUpdate);//コールバックを受け取るようにする
+        gameManager = GameManager.Instance;
+
+        gameManager.scrap.ReceiveCallback(DisplayUpdate);//コールバックを受け取るようにする
 
         DisplayUpdate();//ディスプレイ更新
     }
@@ -24,6 +36,7 @@ public class OwnedScrapsUI : MonoBehaviour
     /// </summary>
     void DisplayUpdate()
     {
-        display.text = (GameManager.Instance.scrap.AmountOwned).ToString();
+        display.text = (gameManager.scrap.AmountOwned).ToString();
     }
+
 }

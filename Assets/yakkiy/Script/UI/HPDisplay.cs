@@ -18,10 +18,22 @@ public class HPDisplay : MonoBehaviour
 
         DisplayUpdate();
     }
+
+    private void OnDestroy()
+    {
+        if (gameManager == null) return;
+
+        gameManager.life.RemoveCallback(DisplayUpdate);
+        gameManager.maxLife.RemoveCallback(DisplayUpdate);
+    }
+
+
     void DisplayUpdate()
     {
         lifeBar.fillAmount = (float)gameManager.life.AmountOwned / (float)gameManager.maxLife.AmountOwned;
 
         lifeText.text = gameManager.life.AmountOwned.ToString();
     }
+
+    
 }

@@ -23,7 +23,10 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Singleton();
+    }
 
+    private void Start()
+    {
         DontDestroyOnLoad(gameObject);
 
         maxLife.SetAmountOwned(EARIY_LIFE);
@@ -90,5 +93,13 @@ public class Property
     public void ReceiveCallback(Action function)
     {
         ChangeCallback += function;
+    }
+
+    /// <summary>
+    /// コールバックの削除
+    /// </summary>
+    public void RemoveCallback(Action function)
+    {
+        ChangeCallback -= function; 
     }
 }

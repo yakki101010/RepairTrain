@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Mortar : MonoBehaviour
 {
+    const float RANDOM_PITCH_MIN = 1f;
+    const float RANDOM_PITCH_MAX = 1.5f;
+
     [Header("クールタイム")]
     [SerializeField] float coolTime;
 
@@ -15,6 +18,11 @@ public class Mortar : MonoBehaviour
     [Header("爆発プレハブ")]
     [SerializeField] GameObject explosionPrefab;
 
+    [Header("発射音")]
+    [SerializeField] AudioClip shotSE;
+    [Header("着弾音")]
+    [SerializeField] AudioClip explosionSE;
+
     [Header("y軸回転")]
     [SerializeField] Transform support;
     [Header("x軸回転")]
@@ -22,6 +30,7 @@ public class Mortar : MonoBehaviour
     [Header("攻撃のターゲットに\n指定できるレイヤー")]
     [SerializeField] LayerMask flowLayer;
 
+    AudioSource audioSource;
 
     InputManager inputManager;
 
@@ -49,6 +58,8 @@ public class Mortar : MonoBehaviour
         inputManager = InputManager.Instance;
 
         inputManager.CallbackLeftClickDown(Shot);
+
+        audioSource = GetComponent<AudioSource>();
     }
     /// <summary>
     /// 攻撃入力
@@ -92,11 +103,16 @@ public class Mortar : MonoBehaviour
     /// <returns></returns>
     IEnumerator MortarShot()
     {
+        audioSource.PlayOneShot(shotSE);
+
         Transform bloodTransform = Instantiate(bloodPrefab, transform.position, Quaternion.identity).transform;
 
         yield return StartCoroutine(Parabola(bloodTransform, targetPos));
 
         Instantiate(explosionPrefab, bloodTransform.position, Quaternion.identity);
+
+        audioSource.pitch = Random.Range(RANDOM_PITCH_MIN, RANDOM_PITCH_MAX);
+        audioSource.PlayOneShot(explosionSE);
     }
 
     /// <summary>

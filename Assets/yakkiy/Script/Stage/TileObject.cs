@@ -27,7 +27,7 @@ public class TileObject : MonoBehaviour
 
         Vector3 pos = rb.position;
 
-        pos.x += routeGenerator.Speed * (RouteGenerator.TILE_SCALE) * Time.deltaTime;
+        pos.x += routeGenerator.Speed * (RouteGenerator.TILE_SCALE * 2) * Time.deltaTime;
 
         rb.MovePosition(pos);
     }

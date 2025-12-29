@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
+    const float RANDOM_PITCH_MIN = 1f;
+    const float RANDOM_PITCH_MAX = 1.5f;
+
     //オブジェクト削除エリア最後尾
     const float DEAD_ZONE_MAX = 90f;
 
@@ -23,6 +26,9 @@ public class Zombie : MonoBehaviour
     [Header("取得スクラップ")]
     [SerializeField] int obtainScrap = 27;
 
+    [Header("攻撃SE")]
+    [SerializeField] AudioClip attackSE;
+
     TrainController trainController;
     ZombieObjectPool zombieObjectPool;
 
@@ -35,10 +41,14 @@ public class Zombie : MonoBehaviour
     bool isAttackInterval;
 
     Rigidbody rb;
+    [Header("ゾンビアニメーター")]
+    [SerializeField] Animator animator;
+    AudioSource audioSource;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
 
         routeGenerator = RouteGenerator.Instance;
         gameManager = GameManager.Instance;
@@ -103,7 +113,7 @@ public class Zombie : MonoBehaviour
     void Dead()
     {
         
-        GameManager.Instance.scrap.AddAmountOwned(obtainScrap);//スクラップを渡す
+        gameManager.scrap.AddAmountOwned(obtainScrap);//スクラップを渡す
 
         Leave();
 
@@ -163,6 +173,8 @@ public class Zombie : MonoBehaviour
 
         if (transform.position.x > DEAD_ZONE_MAX || transform.position.x < DEAD_ZONE_MIN)
         {
+            Leave();
+
             zombieObjectPool.AddInactive(gameObject);//オブジェクトプールに返す
         }
     }
@@ -173,10 +185,21 @@ public class Zombie : MonoBehaviour
     /// <returns></returns>
     IEnumerator Attack()
     {
-        isAttackInterval = true;
-        yield return new WaitForSeconds(attackInterval);
+        const float ANIMATION_MATCHNG = 1.5f;
 
-        if(isStick) gameManager.life.AddAmountOwned(-damage);
+        isAttackInterval = true;
+        yield return new WaitForSeconds(attackInterval - ANIMATION_MATCHNG);
+
+        gameManager.life.AddAmountOwned(-damage);
+        animator.SetTrigger("Attack");
+
+        yield return new WaitForSeconds(ANIMATION_MATCHNG);
+
+        if (isStick)
+        {
+            audioSource.pitch = Random.Range(RANDOM_PITCH_MIN, RANDOM_PITCH_MAX);
+            audioSource.PlayOneShot(attackSE);
+        }
         isAttackInterval = false;
     }
 }

@@ -4,21 +4,36 @@ using UnityEngine;
 
 public class AutoTurret : MonoBehaviour
 {
+    const float RANDOM_PITCH_MIN = 1f;
+    const float RANDOM_PITCH_MAX = 1.5f;
+
     [Header("攻撃力")]
     [SerializeField] int damage;
+    [Header("連射")]
+    [SerializeField] int rapidFire = 3;
+    [Header("連射速度")]
+    [SerializeField] float fireRate = 0.2f;
     [Header("クールタイム")]
-    [SerializeField] float coolTime = 0.2f;
+    [SerializeField] float coolTime = 1f;
 
     [Header("弾プレハブ")]
     [SerializeField] GameObject bloodPrefab;
+    [Header("着弾プレハブ")]
+    [SerializeField] GameObject hitPrefab;
+
+    [Header("射撃音")]
+    [SerializeField] AudioClip shotSE;
 
 
+    [Header("銃口位置")]
     [SerializeField] Transform shotPoint;
     [Header("射線を阻害するレイヤー")]
     [SerializeField] LayerMask notPenetrationLayer;
 
     [Header("銃身")]
     [SerializeField] Transform gunBarrel;
+    [Header("回転台")]
+    [SerializeField] Transform support;
 
     [Header("弾の生成位置")]
     [SerializeField] Transform bloodCreatePoint;
@@ -27,11 +42,18 @@ public class AutoTurret : MonoBehaviour
 
     GameObject target;
 
+    AudioSource audioSource;
+
     Zombie targetZombie;
 
     bool targetLockon;
 
     bool isCoolTime = false;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -89,9 +111,20 @@ public class AutoTurret : MonoBehaviour
     {
         if(target == null) return;
 
-        gunBarrel.rotation = Quaternion.LookRotation(target.transform.position - shotPoint.position, transform.forward);
+        LookTarget();
 
         if (!isCoolTime) StartCoroutine(Shot());
+    }
+
+    /// <summary>
+    /// ターゲットの方を向く
+    /// </summary>
+    void LookTarget()
+    {
+        Vector3 dir = target.transform.position - shotPoint.position;
+        gunBarrel.rotation = Quaternion.LookRotation(dir, transform.forward);
+        dir -= Vector3.Project(dir , transform.forward);//上下の方向を消す
+        support.rotation = Quaternion.LookRotation(dir, transform.forward);
     }
 
     /// <summary>
@@ -102,9 +135,18 @@ public class AutoTurret : MonoBehaviour
     {
         isCoolTime = true;
 
-        Transform blood = Instantiate(bloodPrefab, bloodCreatePoint.position, Quaternion.identity).transform;
+        Vector3 targetPos = target.transform.position;
 
-        StartCoroutine(ShotCourse(blood , target.transform.position));
+        for (int i = 0; i < rapidFire; i++)
+        {
+            Transform blood = Instantiate(bloodPrefab, bloodCreatePoint.position, Quaternion.identity).transform;
+            StartCoroutine(ShotCourse(blood, targetPos));
+
+            audioSource.pitch = Random.Range(RANDOM_PITCH_MIN , RANDOM_PITCH_MAX);
+            audioSource.PlayOneShot(shotSE);
+
+            yield return new WaitForSeconds(fireRate);
+        }
 
         yield return new WaitForSeconds(coolTime);
 
@@ -119,6 +161,16 @@ public class AutoTurret : MonoBehaviour
     {
         const float SPEED = 8f;
 
+        const float TARGET_OFFSET_Y = 1f;
+
+        const float BULLET_SHAKE = 0.3f;
+
+        targetPos.y += TARGET_OFFSET_Y;
+
+        targetPos.x += Random.Range(-BULLET_SHAKE , BULLET_SHAKE);
+        targetPos.y += Random.Range(-BULLET_SHAKE , BULLET_SHAKE);
+        targetPos.z += Random.Range(-BULLET_SHAKE , BULLET_SHAKE);
+
         for (float t = 0; t < 1; t += SPEED * Time.deltaTime)
         {
             Vector3 pos = Vector3.Lerp(bloodCreatePoint.position, targetPos, t);
@@ -128,7 +180,12 @@ public class AutoTurret : MonoBehaviour
             yield return null;
         }
 
-        targetZombie.AddHP(-damage);
+        
+        if(target != null)
+        {
+            targetZombie.AddHP(-damage);
+            Instantiate(hitPrefab, targetPos, Quaternion.LookRotation(bloodCreatePoint.position - targetPos));
+        }
 
         Destroy(blood.gameObject);
     }
