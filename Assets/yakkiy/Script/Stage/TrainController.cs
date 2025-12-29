@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class TrainController : MonoBehaviour
@@ -21,6 +22,8 @@ public class TrainController : MonoBehaviour
         maxClungNum = Train.Instance.parameter.PullingForce;//ココ以外でも使うなら一度変数にいれる
 
         speedDdownClungNum = (int)(maxClungNum * 0.5f);
+
+        StartCoroutine(TimeBreak());
     }
 
     private void Update()
@@ -133,5 +136,25 @@ public class TrainController : MonoBehaviour
     public void Leave(int n)
     {
         clungNum -= n;
+    }
+
+    /// <summary>
+    /// ゾンビによる妨害誤作動防止用
+    /// 仮に誤作動でゾンビがついていないのにカウントが0にならなかった時のために時間経過でも減るようにしておく
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator TimeBreak()
+    {
+        const float TIME = 30;
+
+        while (true)
+        {
+            if(clungNum > 0)
+            {
+                clungNum--;
+            }
+
+            yield return new WaitForSeconds(TIME);
+        }
     }
 }

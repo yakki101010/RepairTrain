@@ -4,24 +4,30 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    const int EARIY_LIFE = 3000;
+
     public static GameManager Instance;
 
     [SerializeField] TrainStructure initialTrain;
 
     [SerializeField] TrainStructure myTrain;
 
-    
-    public Property scrap;
+
+    public Property maxLife;//最大HP
+    public Property life;//現在HP
+
+    public Property scrap;//資材
 
 
 
     private void Awake()
     {
         Singleton();
-    }
-    void Start()
-    {
+
         DontDestroyOnLoad(gameObject);
+
+        maxLife.SetAmountOwned(EARIY_LIFE);
+        life.SetAmountOwned(EARIY_LIFE);
 
         SetDefaulttrain();
     }
@@ -71,7 +77,7 @@ public class Property
     /// <summary>
     /// 保有量に加算
     /// </summary>
-    public void AddSetAmountOwned(int value)
+    public void AddAmountOwned(int value)
     {
         amountOwned += value;
 

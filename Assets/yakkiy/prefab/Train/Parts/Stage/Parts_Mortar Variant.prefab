@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16365bac703dce940b912ee757ae645a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mortar
-  coolTime: 1
+  coolTime: 2
   targetMarkObj: {fileID: 6140759942730197705}
   bloodPrefab: {fileID: 8679504753326417785, guid: cddcbceb55e15254db7a922113026cc9, type: 3}
   explosionPrefab: {fileID: 6660025895636005468, guid: f14bec4dfea0d8a4aa82471478db87c4, type: 3}

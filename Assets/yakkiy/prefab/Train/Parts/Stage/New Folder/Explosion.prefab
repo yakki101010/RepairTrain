@@ -49,8 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ce9a3ab7f1cb144955d23991c08f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackArea
-  knockBack: 100
-  damage: 20
+  damage: 60
 --- !u!198 &4828614710500454097
 ParticleSystem:
   m_ObjectHideFlags: 0

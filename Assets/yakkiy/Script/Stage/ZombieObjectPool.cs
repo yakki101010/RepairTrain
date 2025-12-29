@@ -44,6 +44,8 @@ public class ZombieObjectPool : MonoBehaviour
     /// <param name="obj"></param>
     public void AddInactive(GameObject obj)
     {
+        obj.transform.position = new Vector3(0, 30, 0);//悪い影響を及ぼさないように退避させる
+
         obj.SetActive(false);
         inactiveZombies.Add(obj);
     }

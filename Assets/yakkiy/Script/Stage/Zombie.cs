@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Zombie : MonoBehaviour
     int hp;
     [Header("攻撃力")]
     [SerializeField] int damage = 10;
+    [Header("攻撃頻度")]
+    [SerializeField] float attackInterval = 1f;
     [Header("移動速度")]
     [SerializeField] float speed = 1;
     [Header("取得スクラップ")]
@@ -25,8 +28,11 @@ public class Zombie : MonoBehaviour
 
     RouteGenerator routeGenerator;
 
+    GameManager gameManager;
+
     ///bool isMove = true;
     bool isStick;
+    bool isAttackInterval;
 
     Rigidbody rb;
 
@@ -35,6 +41,7 @@ public class Zombie : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         routeGenerator = RouteGenerator.Instance;
+        gameManager = GameManager.Instance;
     }
 
     private void OnEnable()
@@ -49,6 +56,8 @@ public class Zombie : MonoBehaviour
         DespawnCheck();
 
         FollowTheGround();
+
+        if (isStick && !isAttackInterval) StartCoroutine(Attack());
     }
 
     /// <summary>
@@ -93,9 +102,10 @@ public class Zombie : MonoBehaviour
 
     void Dead()
     {
-        Leave();
+        
+        GameManager.Instance.scrap.AddAmountOwned(obtainScrap);//スクラップを渡す
 
-        GameManager.Instance.scrap.AddSetAmountOwned(obtainScrap);//スクラップを渡す
+        Leave();
 
         zombieObjectPool.AddInactive(gameObject);//オブジェクトプールに返す
     }
@@ -155,5 +165,18 @@ public class Zombie : MonoBehaviour
         {
             zombieObjectPool.AddInactive(gameObject);//オブジェクトプールに返す
         }
+    }
+
+    /// <summary>
+    /// ダメージを与えてクールタイムに入る
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator Attack()
+    {
+        isAttackInterval = true;
+        yield return new WaitForSeconds(attackInterval);
+
+        if(isStick) gameManager.life.AddAmountOwned(-damage);
+        isAttackInterval = false;
     }
 }

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440e66757d689724aac5151485d0d2dc, type: 3}
+  m_Name: Parts_AutoTurret
+  m_EditorClassIdentifier: Assembly-CSharp::PartProperty
+  name: "\u30AA\u30FC\u30C8\u30BF\u30EC\u30C3\u30C8"
+  stagePrefab: {fileID: 8737096086785901628, guid: 210a46a1d7f63be4d884afc561cc1814, type: 3}
+  makingPrefab: {fileID: 797902249895314407, guid: 7bdc16bbb7d08bb41966ab59d1370d50, type: 3}
+  CraftUIPrefab: {fileID: 0}
