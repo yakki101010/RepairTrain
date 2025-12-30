@@ -12,6 +12,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Parts_TrainContainer Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 858729930015689390, guid: da1053bdd3bd2484381733485feb3e76, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3849879443913125820, guid: da1053bdd3bd2484381733485feb3e76, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5098286150449551565, guid: da1053bdd3bd2484381733485feb3e76, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8315526598973485807, guid: da1053bdd3bd2484381733485feb3e76, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

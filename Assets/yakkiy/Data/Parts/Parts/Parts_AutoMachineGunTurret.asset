@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440e66757d689724aac5151485d0d2dc, type: 3}
+  m_Name: Parts_AutoMachineGunTurret
+  m_EditorClassIdentifier: Assembly-CSharp::PartProperty
+  stagePrefab: {fileID: 8030757969830990829, guid: c85020999ad30c946a77e4749327e6ef, type: 3}
+  makingPrefab: {fileID: 7883085666603162319, guid: 0d010add8ce239741854a2e36bd9c9e2, type: 3}
+  craftUI:
+    name: "\u30DE\u30B7\u30F3\u30AC\u30F3\u30BF\u30EC\u30C3\u30C8"
+    image: {fileID: 21300000, guid: 4d2573327d50c6c47850f7e868cfa093, type: 3}
+    explanation: "\u5468\u56F2\u306E\u30BE\u30F3\u30D3\u3092\u81EA\u52D5\u3067\u653B\u6483\u3059\u308B\u3002\n\u9023\u5C04\u304C\u3068\u3066\u3082\u65E9\u3044\u3002"
+    price: 7000

@@ -89,7 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31b6b7527713f643a62b68bee9ee5a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MakingPart
-  colliderObj: {fileID: 8487391242745352632}
+  colliderObjs:
+  - {fileID: 8487391242745352632}
   partsFamily: {fileID: 8250856254910500072}
   meshRenderers:
   - {fileID: 7983115420824940653}

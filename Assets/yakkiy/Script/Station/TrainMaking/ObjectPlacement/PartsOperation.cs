@@ -1,45 +1,66 @@
 ﻿using System.Collections.Generic;
-using System.Data.Common;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-using static UnityEditor.Progress;
+using UnityEngine.SceneManagement;
 
 public class PartsOperation : MonoBehaviour
 {
     public static PartsOperation Instance;
 
-    [SerializeField] PartsFamily partsRoot;//パーツ用親子関係もどきの最親
+    [SerializeField] PartsFamily partsRoot; //パーツ用親子関係もどきの最親
 
+    [Header("セレクトパーツレイヤー")]
     [SerializeField] LayerMask ignoreSelectedParts;
-    [SerializeField] LayerMask placeableLayers;//パーツを接続できるレイヤー
+    [Header("パーツを接続できるレイヤー")]
+    [SerializeField] LayerMask placeableLayers;     
 
-    [SerializeField] Material pickupMaterial;
-    [SerializeField] Material cannotBePlacedMaterial;
+    [Header("パーツの状態を表すマテリアル")]
+    [SerializeField] Material pickupMaterial;         //パーツ選択時のマテリアル
+    [SerializeField] Material cannotBePlacedMaterial; //パーツが正しくない位置に設置された場合のマテリアル
+
+    [Header("正しくない位置に配置されたパーツ")]
+    public List<MakingPart> unregisteredParts;  
     public Material CannotBePlacedMaterial { get { return cannotBePlacedMaterial; } }
 
     bool isPartsMove;//パーツを移動
 
     bool leftClick;//左クリック入力
+
+    bool isOperation = true;//操作可能
+
     Vector2 mousePosition;//マウス位置
 
     MakingPart selectPart;//選択されたパーツ
+
+    /// <summary>
+    /// 左クリック押す
+    /// </summary>
     void OnLeftClickDown()
     {
+        if (!isOperation) return;//操作不可時は入力を受け付けない
+
         leftClick = true;
 
         ClickRay();
     }
 
+    /// <summary>
+    /// 左クリック離す
+    /// </summary>
     void OnLeftClickUp()
     {
+        if (!isOperation) return;//操作不可時は入力を受け付けない
+
         leftClick = false;
 
-        isPartsMove = false;
+        Deselect();
 
-        if(selectPart != null) selectPart.ColliderObj.layer = 8;//パーツlayerに戻す
     }
 
+    /// <summary>
+    /// マウス位置トラッキング
+    /// </summary>
+    /// <param name="inputValue"></param>
     void OnMousePosition(InputValue inputValue)
     {
         mousePosition = inputValue.Get<Vector2>();
@@ -61,18 +82,55 @@ public class PartsOperation : MonoBehaviour
     }
 
     /// <summary>
+    /// 操作可能状態切り替え
+    /// </summary>
+    public void OperationPossibleChange(bool active)
+    {
+        isOperation = active;
+
+        if(!isOperation)//操作不可にする場合現在操作ちゅうのパーツを離す
+        {
+            Deselect();
+        }
+    }
+
+    /// <summary>
+    /// 選択を解除する
+    /// </summary>
+    void Deselect()
+    {
+        isPartsMove = false;
+
+        if (selectPart != null)//パーツlayerに戻す
+        {
+            for (int i = 0; i < selectPart.ColliderObjs.Length; i++)
+            {
+                selectPart.ColliderObjs[i].layer = 8;
+            }
+        }
+    }
+
+    /// <summary>
     /// データをもとに列車を出現させる
     /// </summary>
     [ContextMenu("設計図をロード")]
     void TrainReadout_Making()
     {
         Readout_Making(Train.Instance.parameter.myTrain.bogie , partsRoot);//階層を全て調べてメイキングプレハブを生成する
+
+        Player.Instance.EndLoading();
     }
 
-    void Readout_Making(List<PartObject> childPart , PartsFamily parent)//階層を全て調べてメイキングプレハブを生成する
+    /// <summary>
+    /// 階層を全て調べてメイキングプレハブを生成する
+    /// </summary>
+    /// <param name="childPart">今回階層に配置するパーツのデータ</param>
+    /// <param name="parent">一つ前の階のPartsFamily</param>
+    void Readout_Making(List<PartObject> childPart , PartsFamily parent)
     {
         for (int i = 0; i < childPart.Count; i++)
         {
+            //パーツデータをもとにパーツを生成
             GameObject obj = Instantiate(childPart[i].partProperty.makingPrefab, childPart[i].pos, childPart[i].rot);
 
             PartsFamily partsFamily;
@@ -87,10 +145,14 @@ public class PartsOperation : MonoBehaviour
 
             partsFamily.SetParent(parent);
 
+            //配置したパーツデータにさらに下の階層が存在したらReadout_Makingを追加で呼び出す
             if (childPart[i].childPart.Count > 0) Readout_Making(childPart[i].childPart , partsFamily);
         }
     }
 
+    /// <summary>
+    /// クリックした場所を調べる
+    /// </summary>
     void ClickRay()
     {
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);    // カメラからマウスカーソルの位置のRayを作成
@@ -168,7 +230,11 @@ public class PartsOperation : MonoBehaviour
         //if (selectPart.ColliderObj.transform.childCount != 0) ChildrenMassacre(selectPart.ColliderObj.transform);//選択されたパーツに接続されたパーツがあれば解除する
 
         //selectPart.PartCollider.isTrigger = true;
-        selectPart.ColliderObj.layer = 9;//セレクトパーツlayerに変更
+        //セレクトパーツlayerに変更
+        for (int i = 0; i < selectPart.ColliderObjs.Length; i++)
+        {
+            selectPart.ColliderObjs[i].layer = 9;
+        }
 
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);    // カメラからマウスカーソルの位置のRayを作成
         RaycastHit hit;
@@ -266,8 +332,16 @@ public class PartsOperation : MonoBehaviour
     /// </summary>
     [ContextMenu("設計図をセーブ")]
    
-    void Completion()
+    public void Completion()
     {
+        if(unregisteredParts.Count > 0)//正しくパーツが配置されていなければセーブできない
+        {
+            SystemMessage.Instance.ErrorMessage("配置されていないパーツがあります");
+
+            return;
+        }
+
+
         List<PartObject> trainObject = new List<PartObject>();
 
         Registration(partsRoot.Child,ref trainObject);
@@ -288,7 +362,11 @@ public class PartsOperation : MonoBehaviour
                 if (partFamily.Count > 0) Registration(partFamily[i].Child , ref partObject.childPart);
             }
         }
-        
+
+
+        //ステージに移動する
+        Player.Instance.Loading(Player.Scene.Stage);
+        SceneManager.LoadScene("Stage");
     }
 }
 

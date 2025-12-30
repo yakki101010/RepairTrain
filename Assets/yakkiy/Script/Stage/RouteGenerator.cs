@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// ステージの情報通りに進行度からタイルを生成操作するスクリプト
@@ -51,7 +52,7 @@ public class RouteGenerator : MonoBehaviour
     {
         stageTiles = StageManager.Instance.Stage.tiles;
 
-        for (int i = 0; i < TILE_NUM; i++)
+        for (int i = TILE_NUM; i >= 0; i--)
         {
             Transform tile = Instantiate(stageTiles[i], transform).transform;
 
@@ -80,6 +81,11 @@ public class RouteGenerator : MonoBehaviour
         if (delta > 0 && currentLocation + TILE_NUM > stageTiles.Length)
         {
             speed = 0;
+
+            //現状ここでステージクリア判定もしちゃう
+            Player.Instance.Loading(Player.Scene.Station);
+            GameManager.Instance.day.AddAmountOwned(1);
+            SceneManager.LoadScene("Station");
 
             return;
         }

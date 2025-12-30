@@ -1,0 +1,153 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea181fd9d7eac745b48c86105cb4a80, type: 3}
+  m_Name: LevelData
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  levels:
+  - level: 0
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 15
+    zombieHP: 60
+    zombieStrange: 10
+    zombieNum: 30
+  - level: 2
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 15
+    zombieHP: 60
+    zombieStrange: 10
+    zombieNum: 50
+  - level: 5
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 20
+    zombieHP: 60
+    zombieStrange: 10
+    zombieNum: 60
+  - level: 10
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 20
+    zombieHP: 60
+    zombieStrange: 10
+    zombieNum: 100
+  - level: 15
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 20
+    zombieHP: 100
+    zombieStrange: 10
+    zombieNum: 100
+  - level: 20
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 20
+    zombieHP: 100
+    zombieStrange: 10
+    zombieNum: 120
+  - level: 23
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 20
+    zombieHP: 100
+    zombieStrange: 10
+    zombieNum: 130
+  - level: 26
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 30
+    zombieHP: 130
+    zombieStrange: 10
+    zombieNum: 130
+  - level: 29
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 30
+    zombieHP: 160
+    zombieStrange: 10
+    zombieNum: 160
+  - level: 31
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 30
+    zombieHP: 160
+    zombieStrange: 10
+    zombieNum: 175
+  - level: 34
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 30
+    zombieHP: 160
+    zombieStrange: 10
+    zombieNum: 200
+  - level: 37
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 30
+    zombieHP: 200
+    zombieStrange: 10
+    zombieNum: 200
+  - level: 40
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 30
+    zombieHP: 200
+    zombieStrange: 10
+    zombieNum: 200
+  - level: 50
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 30
+    zombieHP: 200
+    zombieStrange: 10
+    zombieNum: 300
+  - level: 60
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 40
+    zombieHP: 200
+    zombieStrange: 10
+    zombieNum: 300
+  - level: 70
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 40
+    zombieHP: 200
+    zombieStrange: 30
+    zombieNum: 300
+  - level: 80
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 50
+    zombieHP: 200
+    zombieStrange: 30
+    zombieNum: 300
+  - level: 90
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 60
+    zombieHP: 200
+    zombieStrange: 30
+    zombieNum: 300
+  - level: 100
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 60
+    zombieHP: 500
+    zombieStrange: 100
+    zombieNum: 300
+  - level: 150
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 60
+    zombieHP: 1000
+    zombieStrange: 100
+    zombieNum: 300
+  - level: 200
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 60
+    zombieHP: 1500
+    zombieStrange: 100
+    zombieNum: 300
+  - level: 270
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 100
+    zombieHP: 2700
+    zombieStrange: 270
+    zombieNum: 270
+  - level: 365
+    tile: {fileID: 11400000, guid: f1c13ec3494190643a65a23553a0fb5b, type: 2}
+    length: 120
+    zombieHP: 3000
+    zombieStrange: 300
+    zombieNum: 500

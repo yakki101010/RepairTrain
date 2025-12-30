@@ -7,27 +7,34 @@ public class StageManager : MonoBehaviour
 {
     public static StageManager Instance;
 
-    [SerializeField] RailTile tile;
+    [SerializeField] LevelData levelData;
 
-    [SerializeField] int length;//ステージの全長
-    public int Length {  get { return length; } }
+    Level level;
+    public Level _Level { get { return level; } }
 
-    [SerializeField] int zombieNum;//1タイル当たりのゾンビ数
-    public int ZombieNum { get { return zombieNum; } }
-
-    [SerializeField] int eliteZombieNum;//このステージに出現するエリートゾンビの数
-
-    [SerializeField] Stage stage;
+     [SerializeField] Stage stage;
     public Stage Stage { get { return stage; } }
 
     private void Awake()
     {
         Singleton();
+
+        for (int i = 0; i < levelData.Levels.Length; i++)
+        {
+            if (levelData.Levels[i]._Level > GameManager.Instance.day.AmountOwned)
+            {
+                level = levelData.Levels[i];
+
+                return;
+            }
+        }
     }
 
     private void Start()
     {
         GetStage();
+
+        Train.Instance.TrainReadout_Stage();//列車生成
     }
 
     void Singleton()
@@ -46,7 +53,7 @@ public class StageManager : MonoBehaviour
     {
         stage = new Stage();
 
-        stage.RandomTile(length, tile.plainSeries);
+        stage.RandomTile(level.Length, level.Tile.plainSeries);
     }
 }
 
@@ -63,7 +70,7 @@ public class Stage
     /// </summary>
     /// <param name="length">タイルの長さ</param>
     /// <param name="rail">使用するタイルシリーズ</param>
-    public void RandomTile(int length , Rail rail)
+    public void RandomTile(int length, Rail rail)
     {
         tiles = new GameObject[length];
 
@@ -71,6 +78,18 @@ public class Stage
         {
             tiles[i] = rail.GetTile();
         }
+
+        OverwriteStartAndGoal();
+
+
+        void OverwriteStartAndGoal()
+        {
+            int margin = (RouteGenerator.TILE_NUM / 2);
+
+            tiles[margin] = rail.startRail;
+            tiles[length - margin] = rail.goalRail;
+        }
     }
+
 }
 
