@@ -12,13 +12,17 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] TrainStructure myTrain;
 
+    [SerializeField] GameObject trainExplosionPrefab;
+
 
     public Property maxLife;//最大HP
     public Property life;//現在HP
 
     public Property scrap;//資材
 
+    public Property repairNum;//修理回数
 
+    bool isGameOver;
 
     private void Awake()
     {
@@ -33,6 +37,16 @@ public class GameManager : MonoBehaviour
         life.SetAmountOwned(EARIY_LIFE);
 
         SetDefaulttrain();
+    }
+
+    private void Update()
+    {
+        if(life.AmountOwned <= 0 && !isGameOver)
+        {
+            isGameOver = true;
+
+            Instantiate(trainExplosionPrefab, Train.Instance.transform.position, Quaternion.identity);
+        }
     }
 
     void Singleton()

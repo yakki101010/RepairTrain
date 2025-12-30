@@ -12,18 +12,25 @@ public class PartsOperation : MonoBehaviour
 
     [SerializeField] PartsFamily partsRoot; //パーツ用親子関係もどきの最親
 
-    [SerializeField] LayerMask ignoreSelectedParts; //セレクトパーツレイヤー
-    [SerializeField] LayerMask placeableLayers;     //パーツを接続できるレイヤー
+    [Header("セレクトパーツレイヤー")]
+    [SerializeField] LayerMask ignoreSelectedParts;
+    [Header("パーツを接続できるレイヤー")]
+    [SerializeField] LayerMask placeableLayers;     
 
+    [Header("パーツの状態を表すマテリアル")]
     [SerializeField] Material pickupMaterial;         //パーツ選択時のマテリアル
     [SerializeField] Material cannotBePlacedMaterial; //パーツが正しくない位置に設置された場合のマテリアル
 
-    public List<MakingPart> unregisteredParts;  //正しくない位置に配置されたパーツ
+    [Header("正しくない位置に配置されたパーツ")]
+    public List<MakingPart> unregisteredParts;  
     public Material CannotBePlacedMaterial { get { return cannotBePlacedMaterial; } }
 
     bool isPartsMove;//パーツを移動
 
     bool leftClick;//左クリック入力
+
+    bool isOperation = true;//操作可能
+
     Vector2 mousePosition;//マウス位置
 
     MakingPart selectPart;//選択されたパーツ
@@ -33,6 +40,8 @@ public class PartsOperation : MonoBehaviour
     /// </summary>
     void OnLeftClickDown()
     {
+        if (!isOperation) return;//操作不可時は入力を受け付けない
+
         leftClick = true;
 
         ClickRay();
@@ -43,17 +52,11 @@ public class PartsOperation : MonoBehaviour
     /// </summary>
     void OnLeftClickUp()
     {
+        if (!isOperation) return;//操作不可時は入力を受け付けない
+
         leftClick = false;
 
-        isPartsMove = false;
-
-        if(selectPart != null)//パーツlayerに戻す
-        {
-            for (int i = 0; i < selectPart.ColliderObjs.Length; i++)
-            {
-                selectPart.ColliderObjs[i].layer = 8;
-            }
-        }
+        Deselect();
 
     }
 
@@ -82,6 +85,35 @@ public class PartsOperation : MonoBehaviour
     }
 
     /// <summary>
+    /// 操作可能状態切り替え
+    /// </summary>
+    public void OperationPossibleChange(bool active)
+    {
+        isOperation = active;
+
+        if(!isOperation)//操作不可にする場合現在操作ちゅうのパーツを離す
+        {
+            Deselect();
+        }
+    }
+
+    /// <summary>
+    /// 選択を解除する
+    /// </summary>
+    void Deselect()
+    {
+        isPartsMove = false;
+
+        if (selectPart != null)//パーツlayerに戻す
+        {
+            for (int i = 0; i < selectPart.ColliderObjs.Length; i++)
+            {
+                selectPart.ColliderObjs[i].layer = 8;
+            }
+        }
+    }
+
+    /// <summary>
     /// データをもとに列車を出現させる
     /// </summary>
     [ContextMenu("設計図をロード")]
@@ -90,10 +122,16 @@ public class PartsOperation : MonoBehaviour
         Readout_Making(Train.Instance.parameter.myTrain.bogie , partsRoot);//階層を全て調べてメイキングプレハブを生成する
     }
 
-    void Readout_Making(List<PartObject> childPart , PartsFamily parent)//階層を全て調べてメイキングプレハブを生成する
+    /// <summary>
+    /// 階層を全て調べてメイキングプレハブを生成する
+    /// </summary>
+    /// <param name="childPart">今回階層に配置するパーツのデータ</param>
+    /// <param name="parent">一つ前の階のPartsFamily</param>
+    void Readout_Making(List<PartObject> childPart , PartsFamily parent)
     {
         for (int i = 0; i < childPart.Count; i++)
         {
+            //パーツデータをもとにパーツを生成
             GameObject obj = Instantiate(childPart[i].partProperty.makingPrefab, childPart[i].pos, childPart[i].rot);
 
             PartsFamily partsFamily;
@@ -108,6 +146,7 @@ public class PartsOperation : MonoBehaviour
 
             partsFamily.SetParent(parent);
 
+            //配置したパーツデータにさらに下の階層が存在したらReadout_Makingを追加で呼び出す
             if (childPart[i].childPart.Count > 0) Readout_Making(childPart[i].childPart , partsFamily);
         }
     }

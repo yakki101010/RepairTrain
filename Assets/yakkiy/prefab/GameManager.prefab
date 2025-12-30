@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   initialTrain: {fileID: 11400000, guid: e0643d31b1f21c8419de41aa8d47b253, type: 2}
   myTrain: {fileID: 11400000, guid: 168b37c42476181418e90e90f5fabb50, type: 2}
+  trainExplosionPrefab: {fileID: 5569215375982505938, guid: 80c53f0ea51d2004da731cb1fd818c89, type: 3}
