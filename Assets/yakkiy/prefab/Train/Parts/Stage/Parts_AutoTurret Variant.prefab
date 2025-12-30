@@ -219,9 +219,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutoTurret
   damage: 10
-  rapidFire: 3
-  fireRate: 0.1
-  coolTime: 2
+  rapidFire: 10
+  fireRate: 0.2
+  coolTime: 1
   bloodPrefab: {fileID: 3627262781387133129, guid: a072456ec07fa694b9adaa3f4efbc628, type: 3}
   hitPrefab: {fileID: 8218614524058930812, guid: 5e9f783a1f06e1a4a86d0e17f17f7a24, type: 3}
   shotSE: {fileID: 8300000, guid: cc26fd4fb9d16d7429e757e728729742, type: 3}
@@ -229,6 +229,7 @@ MonoBehaviour:
   notPenetrationLayer:
     serializedVersion: 2
     m_Bits: 1025
+  bulletShake: 0.3
   gunBarrel: {fileID: 3994297339501360451}
   support: {fileID: 3075059615777911464}
   bloodCreatePoint: {fileID: 449468033766098225}

@@ -7,6 +7,7 @@ public static class ContinuousAudio
 
     public static void PlaySoundPitchRandom(AudioSource audioSource , AudioClip clip)
     {
+        audioSource.Stop();
         audioSource.pitch = Random.Range(RANDOM_PITCH_MIN, RANDOM_PITCH_MAX);
         audioSource.PlayOneShot(clip);
     }

@@ -39,6 +39,8 @@ public class Train : MonoBehaviour
     public void TrainReadout_Stage()
     {
         Readout_Stage(parameter.myTrain.bogie, transform);
+
+        
     }
 
     /// <summary>

@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Data.Common;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
-using static UnityEditor.Progress;
 
 public class PartsOperation : MonoBehaviour
 {
@@ -120,6 +117,8 @@ public class PartsOperation : MonoBehaviour
     void TrainReadout_Making()
     {
         Readout_Making(Train.Instance.parameter.myTrain.bogie , partsRoot);//階層を全て調べてメイキングプレハブを生成する
+
+        Player.Instance.EndLoading();
     }
 
     /// <summary>
@@ -366,6 +365,7 @@ public class PartsOperation : MonoBehaviour
 
 
         //ステージに移動する
+        Player.Instance.Loading(Player.Scene.Stage);
         SceneManager.LoadScene("Stage");
     }
 }

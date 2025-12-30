@@ -7,19 +7,28 @@ public class ZombieObjectPool : MonoBehaviour
 
     TrainController trainController;
 
-    private void Awake()
+    [SerializeField] TimeManager timeManager;
+
+    /// <summary>
+    /// ステージで使用するゾンビを生成
+    /// </summary>
+    /// <param name="zombiesPrefab">ゾンビのプレハブ</param>
+    /// <param name="attack">ゾンビの攻撃力</param>
+    /// <param name="hp">ゾンビの体力</param>
+    /// <param name="count">生成数</param>
+    public void GenerateZombie(GameObject zombiesPrefab ,int attack ,int hp, int count)
     {
         trainController = Train.Instance.gameObject.GetComponent<TrainController>();
-    }
 
-    public void GenerateZombie(GameObject zombiesPrefab , int count)
-    {
         for (int i = 0; i < count; i++)
         {
             GameObject obj = Instantiate(zombiesPrefab ,transform);
             obj.TryGetComponent<Zombie>(out Zombie zombie);
+            zombie.damage = attack;
+            zombie.maxHp = hp;
             zombie.SetTrainController(trainController);
             zombie.SetZombieObjectPool(this);
+            timeManager.RequestNightCallback(zombie.NightFalls);
             obj.SetActive(false);
             inactiveZombies.Add(obj);
         }

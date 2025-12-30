@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CraftTable : MonoBehaviour
@@ -101,6 +102,8 @@ public class CraftTable : MonoBehaviour
     /// </summary>
     public void CraftRequest()
     {
+        const float GENERATION_DISTANCE = 2f;
+
         if (selectPartProperty == null) return;
         if (selectPartProperty.craftUI.price > gameManager.scrap.AmountOwned)//パーツ不足
         {
@@ -110,11 +113,16 @@ public class CraftTable : MonoBehaviour
 
 
         Vector3 createPos = Camera.main.transform.position;
-        createPos += Camera.main.transform.forward;
+        createPos += Camera.main.transform.forward * GENERATION_DISTANCE;
 
         Instantiate(selectPartProperty.makingPrefab, createPos, Quaternion.identity);
-        gameManager.scrap.AddAmountOwned(-selectPartProperty.craftUI.price);
+        gameManager.scrap.AddAmountOwned(-selectPartProperty.craftUI.price );
 
+
+        selectCraftUI.MakeUnselectable();
+        selectPartProperty = null;
+        selectCraftUI = null;
+        ExplanationDisplay();
         ActiveSwitch(false);//クラフト台を閉じる
     }
 

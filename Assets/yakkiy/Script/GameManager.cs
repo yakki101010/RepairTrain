@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Data.Common;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject trainExplosionPrefab;
 
+    
 
     public Property maxLife;//最大HP
     public Property life;//現在HP
@@ -21,6 +24,7 @@ public class GameManager : MonoBehaviour
     public Property scrap;//資材
 
     public Property repairNum;//修理回数
+    public Property day;//経過日数
 
     bool isGameOver;
 
@@ -46,7 +50,17 @@ public class GameManager : MonoBehaviour
             isGameOver = true;
 
             Instantiate(trainExplosionPrefab, Train.Instance.transform.position, Quaternion.identity);
+
+            StartCoroutine(GameOver());
         }
+    }
+
+    IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(1);
+
+        SceneManager.LoadScene("Title");
+        Destroy(gameObject);
     }
 
     void Singleton()
@@ -60,6 +74,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+   
 
     /// <summary>
     /// 設計図を初期状態の列車に上書きする

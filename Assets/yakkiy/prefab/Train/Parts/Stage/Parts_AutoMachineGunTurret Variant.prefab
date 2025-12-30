@@ -199,8 +199,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutoTurret
   damage: 5
-  rapidFire: 30
-  fireRate: 0.05
+  rapidFire: 60
+  fireRate: 0.08
   coolTime: 3
   bloodPrefab: {fileID: 3627262781387133129, guid: 538a179bd463fe44585bd85cdce1c0d6, type: 3}
   hitPrefab: {fileID: 8218614524058930812, guid: 5e9f783a1f06e1a4a86d0e17f17f7a24, type: 3}

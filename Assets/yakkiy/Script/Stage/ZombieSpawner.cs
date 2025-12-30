@@ -32,6 +32,8 @@ public class ZombieSpawner : MonoBehaviour
     int sideSpaenCount;
     int frontAndBackSpaenCount;
 
+    bool fastSpawn = true;//ステージ開始から一発目のスポーン
+
     void Start()
     {
         //RouteGenerator.Instance.TileSpawn += TileSpawn;//ルートマネージャーがタイルを生成したタイミングの関数に登録
@@ -45,9 +47,9 @@ public class ZombieSpawner : MonoBehaviour
 
         stageManager = StageManager.Instance;
 
-        zombieObjectPool.GenerateZombie(prefab, SPAWN_COUNT_MAX);
+        zombieObjectPool.GenerateZombie(prefab, stageManager._Level.ZombieStrange, stageManager._Level.ZombieHP, SPAWN_COUNT_MAX);
 
-        sideSpaenCount = stageManager.ZombieNum / 3;
+        sideSpaenCount = stageManager._Level.ZombieNum / 3;
         frontAndBackSpaenCount = (int)(sideSpaenCount * 0.5f);
     }
 
@@ -93,6 +95,17 @@ public class ZombieSpawner : MonoBehaviour
             zombieObjectPool.ZombieInstantiate(tilePos + randomness, Quaternion.identity);
 
             yield return new WaitForSeconds(1 / count);
+        }
+
+        if(fastSpawn)//ファーストスポーンが終わったタイミングでローディングを終了する
+        {
+            const float USEFUL = 0.5f;
+
+            yield return new WaitForSeconds(USEFUL);//生成後一瞬かくつくので余裕を持たせる
+
+            Player.Instance.EndLoading();
+
+            fastSpawn = false;
         }
     }
 }

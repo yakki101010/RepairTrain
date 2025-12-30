@@ -18,4 +18,4 @@ MonoBehaviour:
     name: "\u30DE\u30B7\u30F3\u30AC\u30F3\u30BF\u30EC\u30C3\u30C8"
     image: {fileID: 21300000, guid: 4d2573327d50c6c47850f7e868cfa093, type: 3}
     explanation: "\u5468\u56F2\u306E\u30BE\u30F3\u30D3\u3092\u81EA\u52D5\u3067\u653B\u6483\u3059\u308B\u3002\n\u9023\u5C04\u304C\u3068\u3066\u3082\u65E9\u3044\u3002"
-    price: 60000
+    price: 7000

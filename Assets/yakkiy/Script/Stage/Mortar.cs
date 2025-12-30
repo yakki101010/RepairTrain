@@ -27,6 +27,9 @@ public class Mortar : MonoBehaviour
     [Header("攻撃のターゲットに\n指定できるレイヤー")]
     [SerializeField] LayerMask flowLayer;
 
+    [Header("弾生成ポイント")]
+    [SerializeField] Transform shotPoint;
+
     AudioSource audioSource;
 
     InputManager inputManager;
@@ -45,6 +48,8 @@ public class Mortar : MonoBehaviour
 
     private void Update()
     {
+        OrientationControl(targetPos);
+
         Targeting();
     }
     /// <summary>
@@ -102,7 +107,7 @@ public class Mortar : MonoBehaviour
     {
         audioSource.PlayOneShot(shotSE);
 
-        Transform bloodTransform = Instantiate(bloodPrefab, transform.position, Quaternion.identity).transform;
+        Transform bloodTransform = Instantiate(bloodPrefab, shotPoint.position, Quaternion.identity).transform;
 
         yield return StartCoroutine(Parabola(bloodTransform, targetPos));
 
@@ -114,21 +119,14 @@ public class Mortar : MonoBehaviour
     /// <summary>
     /// 発射軌道放物線(使いまわす場合クラスを分ける)
     /// </summary>
-    IEnumerator Parabola(Transform projectile , Vector3 target)
+    IEnumerator Parabola(Transform projectile, Vector3 target)
     {
         float gravity = -70f;
 
-        float time = 1f;//到達速度
+        Vector3 velocity = LaunchDir( target);
 
-        //ベクトルを指定
-        Vector3 velocity;
-        velocity.x = (target.x - projectile.position.x) / time;
-        velocity.z = (target.z - projectile.position.z) / time;
-
-        //上方向初速
-        velocity.y = 30f;
-
-        for (float t = 0; t < 1; t+= Time.deltaTime)
+        //発射軌道
+        for (float t = 0; t < 1; t += Time.deltaTime)
         {
             projectile.position += velocity * Time.deltaTime;
 
@@ -140,5 +138,37 @@ public class Mortar : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    /// <summary>
+    /// 大砲の向きを合わせる
+    /// </summary>
+    void OrientationControl(Vector3 target)
+    {
+
+        Vector3 dir = LaunchDir(target) * 0.2f;
+        gunBarrel.rotation = Quaternion.LookRotation(dir, transform.forward);
+        dir -= Vector3.Project(dir, transform.forward);//上下の方向を消す
+        support.rotation = Quaternion.LookRotation(dir, transform.forward);
+    }
+
+    /// <summary>
+    /// 発射方向指定
+    /// </summary>
+    /// <returns></returns>
+    Vector3 LaunchDir( Vector3 target)
+    {
+
+        float time = 1f;//到達速度
+
+        //ベクトルを指定
+        Vector3 velocity;
+        velocity.x = (target.x - shotPoint.position.x) / time;
+        velocity.z = (target.z - shotPoint.position.z) / time;
+
+        //上方向初速
+        velocity.y = 30f;
+
+        return velocity;
     }
 }

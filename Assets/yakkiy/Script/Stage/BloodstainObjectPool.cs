@@ -13,6 +13,8 @@ public class BloodstainObjectPool : MonoBehaviour
     [Header("最大数")]
     [SerializeField] int maxNum;
 
+    
+
     private void Awake()
     {
         Singleton();

@@ -14,10 +14,10 @@ public class Zombie : MonoBehaviour
     [SerializeField] LayerMask trainLayer;
 
     [Header("体力")]
-    [SerializeField] int maxHp = 100;
+    public int maxHp = 100;
     int hp;
     [Header("攻撃力")]
-    [SerializeField] int damage = 10;
+    public int damage = 10;
     [Header("攻撃頻度")]
     [SerializeField] float attackInterval = 1f;
     [Header("移動速度")]
@@ -32,7 +32,13 @@ public class Zombie : MonoBehaviour
 
     [Header("血しぶきプレハブ")]
     [SerializeField] GameObject bloodSplatter;
-    
+
+    [Header("無敵マテリアル")]
+    [SerializeField] Material neatMaterial;
+    [Header("メッシュレンダラー")]
+    [SerializeField] SkinnedMeshRenderer meshRenderer;
+    [Header("パーティクルシステム")]
+    [SerializeField] ParticleSystem neatParticle;
 
     TrainController trainController;
     ZombieObjectPool zombieObjectPool;
@@ -44,6 +50,8 @@ public class Zombie : MonoBehaviour
     ///bool isMove = true;
     bool isStick;
     bool isAttackInterval;
+
+    bool isNeat;//無敵フラグ
 
     Rigidbody rb;
     [Header("ゾンビアニメーター")]
@@ -73,6 +81,18 @@ public class Zombie : MonoBehaviour
         FollowTheGround();
 
         if (isStick && !isAttackInterval) StartCoroutine(Attack());
+    }
+
+    /// <summary>
+    /// 夜になると呼ばれる無敵フラグがオンになる
+    /// </summary>
+    public void NightFalls()
+    {
+        isNeat = true;
+
+        neatParticle.Play();
+
+        meshRenderer.material = neatMaterial;
     }
 
     /// <summary>
@@ -106,6 +126,8 @@ public class Zombie : MonoBehaviour
 
     public void AddHP(int addHp)
     {
+        if (isNeat) return;
+
         hp += addHp;
 
         if(hp <= 0)

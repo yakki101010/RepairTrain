@@ -82,7 +82,10 @@ public class RouteGenerator : MonoBehaviour
         {
             speed = 0;
 
-            SceneManager.LoadScene("Station");//現状ここでステージクリア判定もしちゃう
+            //現状ここでステージクリア判定もしちゃう
+            Player.Instance.Loading(Player.Scene.Station);
+            GameManager.Instance.day.AddAmountOwned(1);
+            SceneManager.LoadScene("Station");
 
             return;
         }

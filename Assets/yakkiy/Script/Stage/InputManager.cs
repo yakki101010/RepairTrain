@@ -13,7 +13,27 @@ public class InputManager : MonoBehaviour
     bool backAccele;//後進入力
     public bool BackAccele { get {return backAccele; } }
 
-    bool leftClick;//右クリック入力
+    bool rightClick;//右クリック入力
+    public bool RightClick { get { return rightClick; } }
+    Action RightClickDown;//入力時に呼ばれるコールバック
+    /// <summary>
+    /// 右クリック入力時に呼ばれるコールバックを登録
+    /// </summary>
+    public void CallbackRightClickDown(Action action)
+    {
+        RightClickDown += action;
+    }
+    Action RightClickUp;//左クリックを離した時に呼ばれるコールバック
+    /// <summary>
+    /// 右クリックを離した時に呼ばれるコールバックを登録
+    /// </summary>
+    public void CallbackRightClickUp(Action action)
+    {
+        RightClickUp += action;
+    }
+
+
+    bool leftClick;//左クリック入力
     public bool LeftClick {  get { return leftClick; } }
     Action LeftClickDown;//入力時に呼ばれるコールバック
     /// <summary>
@@ -35,6 +55,10 @@ public class InputManager : MonoBehaviour
 
     Vector2 mousePos;//マウス位置
     public Vector2 MousePos {  get { return mousePos; } }
+
+    Vector2 mouseMove;//マウスの移動量
+
+    public Vector2 MouseMove { get { return mouseMove; } }
 
     private void Awake()
     {
@@ -66,6 +90,20 @@ public class InputManager : MonoBehaviour
         if(LeftClickUp != null) LeftClickUp();
     }
 
+    void OnRightClickDown()
+    {
+        //Debug.Log("右クリック開始");
+        rightClick = true;
+        if (RightClickDown != null) RightClickDown();
+    }
+
+    void OnRightClickUp()
+    {
+        //Debug.Log("右クリックやめ");
+        rightClick = false;
+        if (RightClickUp != null) RightClickUp();
+    }
+
 
     void OnForwardDown()
     {
@@ -92,5 +130,10 @@ public class InputManager : MonoBehaviour
     void OnMousePosition(InputValue inputValue)
     {
         mousePos = inputValue.Get<Vector2>();
+    }
+
+    void OnMouseMove(InputValue inputValue)
+    {
+        mouseMove = inputValue.Get<Vector2>();
     }
 }
